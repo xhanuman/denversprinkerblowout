@@ -15,7 +15,7 @@ gem "jekyll", "~> 4.1"
 # This is the default theme for new Jekyll sites. You may change this to anything you like.
 #gem "minima", "~> 2.0"
 
-# gem 'github-pages'
+gem 'github-pages'
 gem 'jekyll-environment-variables'
 
 gem "webrick", "~> 1.7"
