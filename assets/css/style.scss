@@ -1,43 +1,52 @@
 ---
 # this ensures Jekyll reads the file to be transformed into CSS later
+# only Main files contain this front matter, not partials.
 ---
 
-// Colors
-$primary: #E5261F;
-$secondary: #f88379;
-$black: #2f2f41;
-$white: #ffffff;
-$white-offset: #fff6f8;
-$steel: #5C5A5A;
-
-// Links
-$link-color: $primary;
-$link-decoration: none;
-$link-hover-color: lighten($primary, 10%);
-$link-hover-decoration: underline;
-
-// Fonts
-$font-family-base: Helvetica, Arial, sans-serif, -apple-system;
-$font-family-heading: 'Playfair Display', serif, -apple-system;
-
-// Footer
-$footer-background-color: $primary;
-$footer-text-color: $white;
-$sub-footer-background-color: darken($primary, 10%);
-$sub-footer-text-color: $white;
-
+// Font
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto&display=swap');
 // Bootstrap
+@import 'bootstrap/functions';
 @import 'bootstrap-variables';
-@import 'bootstrap/bootstrap-reboot';
-@import 'bootstrap/bootstrap-grid';
-// @import 'bootstrap/bootstrap'; // Uncomment this line to import the entire Bootstrap library
-
+@import 'bootstrap/variables';
+@import 'bootstrap/mixins';
+@import 'bootstrap/root';
+@import 'bootstrap/reboot';
+@import 'bootstrap/grid';
+@import 'bootstrap/type';
+@import 'bootstrap/tables';
+// @import "bootstrap/images";
+// @import "bootstrap/code";
+// @import "bootstrap/forms";
+// @import "bootstrap/buttons";
+// @import "bootstrap/transitions";
+// @import "bootstrap/dropdown";
+// @import "bootstrap/button-group";
+// @import "bootstrap/input-group";
+// @import "bootstrap/custom-forms";
+// @import "bootstrap/nav";
+// @import "bootstrap/navbar";
+// @import "bootstrap/card";
+// @import "bootstrap/breadcrumb";
+// @import "bootstrap/pagination";
+// @import "bootstrap/badge";
+// @import "bootstrap/jumbotron";
+// @import "bootstrap/alert";
+// @import "bootstrap/progress";
+// @import "bootstrap/media";
+// @import "bootstrap/list-group";
+// @import "bootstrap/close";
+// @import "bootstrap/modal";
+// @import "bootstrap/tooltip";
+// @import "bootstrap/popover";
+// @import "bootstrap/carousel";
+// @import "bootstrap/print";
+@import 'bootstrap/utilities';
 
 // Libraries
 @import 'libraries/hamburgers/hamburgers';
 
 // Components
-@import 'components/type';
 @import 'components/page';
 @import 'components/header';
 @import 'components/footer';
@@ -45,28 +54,360 @@ $sub-footer-text-color: $white;
 @import 'components/logo';
 @import 'components/main-menu';
 @import 'components/main-menu-mobile';
+@import 'components/social';
 @import 'components/hamburger';
 @import 'components/buttons';
-@import 'components/call';
 @import 'components/title';
 @import 'components/content';
 @import 'components/intro';
-@import 'components/intro-image';
 @import 'components/strip';
+@import 'components/whitebox';
 @import 'components/feature';
-@import 'components/social';
 
 // Pages
 @import 'pages/home';
+@import 'pages/team/team-list';
 @import 'pages/team/team-summary';
+@import 'pages/team/page-team-list';
+@import 'pages/testimonials/testimonials-list';
+@import 'pages/testimonials/testimonials-summary';
+@import 'pages/testimonials/page-testimonials-list';
+@import 'pages/services/page-services-list';
 @import 'pages/services/page-services-single';
+@import 'pages/services/service-single';
+@import 'pages/services/service-summary';
+/* Custom CSS */
 
-body {
-  font-size: 16px;
-  line-height: 1.2;
-  font-family: $font-family-base;
-  @include media-breakpoint-up(md) {
+body{
+    font-family: "Roboto",sans-serif;
+    color: #596570;
     font-size: 16px;
-    line-height: 1.3;
-  }
+    line-height: 26px;
+    font-weight: 300;
 }
+h1,h2,h3,h4,h5,h6{
+    font-family: 'Poppins', sans-serif;
+}
+.sec{
+    position: relative;
+    padding: 80px 0;
+    @media (min-width: 992px) {
+        padding: 100px 0;
+    }
+}
+.gap{
+    height: 35px;
+    clear: both;
+}
+h2{
+    font-size: 30px;
+    line-height: 38px;
+}
+h3{
+    font-size: 28px;
+    line-height: 38px;
+}
+h4{
+    font-size: 26px;
+    line-height: 36px;
+}
+h5{
+    font-size: 24px;
+    line-height: 34px;
+}
+h1, h2, h3, h4, h5, h6, p, ul, ol, table {
+    margin: 0 0 18px;
+}
+
+.lead{
+    font-size: 24px;
+    line-height: 34px;
+    font-weight: 300;
+}
+.bg-gray{
+    background: #eee;
+}
+.topbar{
+    background-color: #2a2d33;
+    padding: 10px 0;
+    p{
+        font-size: 13px;
+        font-weight: 400;
+        color: #fff;
+        margin: 0;
+    }
+}
+strong{
+    font-weight: 700;
+    color: #2a2d33;
+}
+
+ul,li{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.gutter-vr-30px {
+    margin-top: -15px !important;
+    margin-bottom: -15px !important;
+}
+
+.gutter-vr-30px>li,
+.gutter-vr-30px>div {
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+}
+
+.content-box{
+    img{
+        margin-bottom: 20px;
+    }
+    h2{
+        margin-bottom: 20px;
+    }
+    ul{
+        li{
+            position: relative;
+            padding-left: 15px;
+            margin-bottom: 20px;
+            &::before{
+                position: absolute;
+                content: '';
+                left: 0;
+                top: 0;
+                width: 6px;
+                height: 6px;
+                border-radius: 50%;
+                background: #596570;
+                top: 8px;
+            }
+        }
+        
+    }
+    ol{
+        &.style-number{
+            padding-left: 20px;
+            list-style: decimal;
+            margin-bottom: 15px;
+            li{
+                list-style: decimal !important;
+            }
+        }
+    }
+    
+}
+.alignright{
+    float: right;
+}
+.toggle-wrap {
+    position: relative;
+}
+
+.toggle-line{
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    display: block;
+    right: 20px;
+    cursor: pointer;
+    z-index: 99;
+    top: 10px;
+    > span{
+        top: 50%;
+        margin-top: -1px;
+        width: 20px;
+    }
+    &.active{
+        color: #fff;
+    }
+}
+.toggle-line::after,
+.toggle-line::before,
+.toggle-line > span {
+    content: "";
+    position: absolute;
+    background: currentColor;
+    -webkit-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    transition: all 0.2s;
+    width: 24px;
+    height: 2px;
+    left: 4px;
+    border-radius: 3px;
+}
+.toggle-line::before {
+    top: 8px;
+}
+.toggle-line::after {
+    bottom: 8px;
+}
+.active.toggle-line > span {
+    opacity: 0;
+    visibility: hidden;
+}
+.active.toggle-line::before {
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    top: 15px;
+}
+.active.toggle-line::after {
+    -webkit-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    bottom: 15px;
+}
+.active.toggle-line::before, 
+.active.toggle-line::after {
+    width: 28px;
+    left: 2px;
+}
+.main-menu{
+    display: block;
+    position: fixed;
+    left: -280px;
+    top: 0;
+    width: 260px;
+    height: 100vh;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    transition: all 0.4s;
+    background-color: #fff;
+    z-index: 9;
+    .header-nav {
+        max-height: 100vh;
+        overflow: hidden;
+        overflow-y: auto;
+        justify-content: flex-end;
+        padding: 30px 25px;
+    }
+    ul{
+        li{
+           
+            a{
+                padding: 10px 0;
+            }
+        }
+    }
+    &.open{
+        left: 0 !important;
+    }
+}
+.header-navbar-overlay{
+    background: rgba(0, 0, 0, 0.7);
+    left: 100%;
+    width: 0;
+    z-index: -1;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s;
+    transition-delay: 0.2s;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    content: "";
+    top: 0;
+    .open & {
+        width: 100%;
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+.menu-section{
+    padding: 15px 0;
+    box-shadow: 0 0 20px 0 rgba(10, 16, 21,0.08);
+}
+
+@media (min-width: 992px){
+    .menu-section{
+        padding: 30px 0;
+        position: relative;
+    }
+
+    .header-nav{
+        display: flex;
+        align-items: center;
+    }
+    .main-menu{
+        position: static;
+        width: auto;
+        height: auto;
+        left: 0;
+        ul{
+            li{
+                margin-left: 15px;
+            }
+        }
+        .header-nav{
+            padding: 0;
+        }
+    }
+    .header-navbar-overlay{
+        display: none;
+    }
+}
+.toggle-wrap{
+    .logo{
+        max-width: 230px;
+    }
+}
+.banner{
+    min-height: 520px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 0;
+    &::before{
+        position: absolute;
+        content: '';
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        left: 0;
+        top: 0;
+    }
+    .banner-content{
+        position: relative;
+    }
+    .banner-title{
+        color: #fff;
+        font-size: 28px;
+        font-weight: 700;
+        text-transform: uppercase;
+        line-height: 38px;
+    }
+    .banner-desc{
+        font-size: 18px;
+        line-height: 34px;
+        color: #fff;
+        margin: 20px 0;
+    }
+}
+@media (min-width: 768px ){
+    .banner{
+        .banner-title{
+            color: #fff;
+            font-size: 48px;
+            line-height: 52px;
+        }  
+        .banner-desc{
+            font-size: 24px;
+        }
+    }
+}
+
+// cta 
+.cta-block{
+    background: $primary;
+    padding: 50px 0;
+    h3{
+        font-size: 24px;
+        font-weight: 400;
+        line-height: 34px;
+        color: #fff;
+    }
+}
+

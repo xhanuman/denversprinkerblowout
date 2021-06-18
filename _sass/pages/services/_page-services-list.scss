@@ -1,0 +1,18 @@
+.page-services-list {
+  background-image: url('../images/indiaDogAgra_ConradOlivier25fps.gif');
+  background-repeat: no-repeat;
+  background-size: 34%;
+  background-position: 49px 0px;
+  @include media-breakpoint-up(sm) {
+    background-size: 34%;
+    background-position: 159px 0px;
+  }
+  @include media-breakpoint-up(md) {
+    background-size: 34%;
+    background-position: 199px 0px;
+  }
+  @include media-breakpoint-up(lg) {
+    background-size: 34%;
+    background-position: 100% 0px;
+  }
+}

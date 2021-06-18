@@ -1,12 +1,22 @@
-<div class='header'>
-  <div class="container">
-    <div class="logo">
-      <a href="{{ site.baseurl }}"><img height="{{ site.logo.desktop_height }}" alt="{{ site.title }}" src="{{ site.logo.desktop | relative_url }}" /></a>
+<div class="sec-header">
+  <div class="topbar">
+    <div class="container">
+      <div class="row text-center text-md-left justify-content-between">
+       <div class="col-md-6">
+          <p>Denver Sprinkler Repairs and Blowout – Prompt arrival and professional service  </p>
+       </div>
+       <div class="col-md-6 text-md-right">
+          <p>All appointments must be booked online - DENVER only! </p>
+        </div>
+      </div>
     </div>
-    <div class="logo-mobile">
-      <a href="{{ site.baseurl }}"><img alt="{{ site.title }}" src="{{ site.logo.mobile | relative_url }}" /></a>
-    </div>
-    {% include main-menu.html %}
-    {% include hamburger.html %}
   </div>
+
+ <div class="menu-section">
+    <div class="container">
+    
+      {% include main-menu.html %}
+    
+    </div>
+ </div>
 </div>

@@ -1,10 +1,23 @@
-<div id="main-menu" class="main-menu">
-  {% assign mainmenu = site.data.menus.main | sort: 'weight'  %}
-  <ul>
-    {% for item in mainmenu %}
-    <li class="{% if item.url == page.url %}active{% endif %}">
-      <a href="{{ item.url | relative_url }}">{{ item.name }}</a>
-    </li>
-    {% endfor %}
-  </ul>
+<div class="toggle-wrap d-lg-none">
+  <div class="toggle-line ">
+    <span></span>
+  </div>
+  <div class="logo">
+    <a href="{{site.baseurl}}/"><img src="{{site.baseurl}}/assets/images/logo.png" alt="Denver Sprinkler Repairs and Blowout – Prompt arrival and professional service"/></a>
+  </div>
+  
+</div>
+<div class="main-menu">
+  <div class="header-nav justify-content-between">
+      <div class="logo">
+        <a href="{{site.baseurl}}/"><img src="{{site.baseurl}}/assets/images/logo.png" alt="Denver Sprinkler Repairs and Blowout – Prompt arrival and professional service"/></a>
+      </div>
+      <ul>
+        <li><a href="{{site.baseurl}}/" class="{% if page.url == '/' %}current{% endif %}">Denver Sprinkler Start Up and Repairs</a></li>
+        <li><a href="{{site.baseurl}}/denver-sprinkler-repairs/" class="{% if page.url contains 'denver-sprinkler-repairs' %}current{% endif %}">Denver Sprinkler System Repairs</a></li>
+        <li><a href="{{site.baseurl}}/onlinescheduling/" class="{% if page.url contains 'onlinescheduling' %}current{% endif %}">Denver Sprinkler blowout</a></li>
+        <!-- <li><a href="{{site.baseurl}}/contact/" class="{% if page.url contains 'contact' %}current{% endif %}">Contact</a></li> -->
+      </ul>
+  </div>
+  <div class="header-navbar-overlay"></div>
 </div>
