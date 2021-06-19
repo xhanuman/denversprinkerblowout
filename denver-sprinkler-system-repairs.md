@@ -1,7 +1,7 @@
 ---
-# To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 title: Denver Sprinkler System Repairs - Sprinkler Repairs and Blowout in Denver 70 CFM and Winterization
 layout: default
+permalink: /denver-sprinkler-system-repairs/
 ---
   {% include banner.html %}
   {% include iframe.html %}
