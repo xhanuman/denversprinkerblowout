@@ -36,6 +36,6 @@ plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
 
-domain: shagors333.github.io      # if you want to force HTTPS, specify the domain without the http at the start, e.g. example.com
-url: https://shagors333.github.io  # the base hostname and protocol for your site, e.g. http://example.com
-baseurl: /Denver-Sprinkler-System      # place folder name if the site is served in a subfolder   
+domain: xhanuman.github.io      # if you want to force HTTPS, specify the domain without the http at the start, e.g. example.com
+url: https://xhanuman.github.io  # the base hostname and protocol for your site, e.g. http://example.com
+baseurl: /denversprinkerblowout      # place folder name if the site is served in a subfolder   
