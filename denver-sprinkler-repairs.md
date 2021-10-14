@@ -34,7 +34,7 @@ permalink: /denver-sprinkler-repairs/
                 <div class="content-box">
                     <h2>Sprinkler Repairs in Denver</h2>
                     <p>
-                        Need assistance with sprinkler repairs “near me” in Denver? I primarly serve Eastern, South and Central Denver. Getting your broken sprinkler lines repaired or sprinkler heads functioning properly will have a clear impact on how your yard looks.
+                        Need assistance with sprinkler repairs “near me” in Denver? I primarily serve Eastern, South and Central Denver. Getting your broken sprinkler lines repaired or sprinkler heads functioning properly will have a clear impact on how your yard looks.
                     </p>
                     <p>
                         Duct tape is amazing stuff, but it is not a long term solution when it comes to repairing a leaking sprinkler line in Denver!

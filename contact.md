@@ -12,9 +12,9 @@ bodyClass: page-contact
                 <div class="content-box">
                    <h1>Contact Us</h1>
                    <p class="lead">If you would like us to repair your sprinkler system or perform <br> winterization procedures please feel free to call me directly: </p>
-                   <p> 
-                        <strong>Conrad @ 720.985.1157</strong>
-                        (I’ll be unavailable until June 10th)
+                   <p>
+                        <strong>Conrad @ unavailable at this time</strong>
+
                     </p>
                 </div>
             </div>
