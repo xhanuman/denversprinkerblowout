@@ -15,11 +15,13 @@ permalink: /denver-sprinkler-repairs/
                     <h1>Denver Sprinkler System Repairs</h1>
                     <h2>Easy online scheduling for Denver Sprinkler Repair </h2>
                     <p>We offer a wide variety Denver Sprinkler Repairs below – if you know what your problem is, but do not see it listed, just book a sprinkler startup and add a message including your sprinkler repair request. We can discuss before your appointment and get the details ironed out:</p>
-                    <p>Schedule using this link if using Apple products or via mobile (otherwise, please schedule on this page below the schedule now link)</p>
+                    <p>Schedule using this link</p>
                     <div class="img">
-                        <a href="https://aurorablowout.genbook.com/" target="_blank">
+
+<script type="text/javascript" src="https://booksy.com/widget/code.js?id=713037&country=us&lang=en"></script>
+                        <!--<a href="https://aurorablowout.genbook.com/" target="_blank">
                             <img src="../assets/images/scheduleNow.png" alt="scheduleNow">
-                        </a>
+                        </a>-->
                     </div>
                 </div>
             </div>
