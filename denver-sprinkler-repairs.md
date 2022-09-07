@@ -18,10 +18,7 @@ permalink: /denver-sprinkler-repairs/
                     <p>Schedule using this link</p>
                     <div class="img">
 
-<script type="text/javascript" src="https://booksy.com/widget/code.js?id=713037&country=us&lang=en"></script>
-                        <!--<a href="https://aurorablowout.genbook.com/" target="_blank">
-                            <img src="../assets/images/scheduleNow.png" alt="scheduleNow">
-                        </a>-->
+
                     </div>
                 </div>
             </div>
