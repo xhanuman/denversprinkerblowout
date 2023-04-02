@@ -15,7 +15,7 @@ permalink: /denver-sprinkler-repairs/
                     <h1>Denver Sprinkler System Repairs</h1>
                     <h2>Easy online scheduling for Denver Sprinkler Repair </h2>
                     <p>We offer a wide variety Denver Sprinkler Repairs below – if you know what your problem is, but do not see it listed, just book a sprinkler startup and add a message including your sprinkler repair request. We can discuss before your appointment and get the details ironed out:</p>
-                    <p>Schedule using this link</p>
+                    <p>Schedule using this link <a href="https://www.5280sprinklers.com">5280Sprinklers.com</a></p>
                     <div class="img">
 
 
