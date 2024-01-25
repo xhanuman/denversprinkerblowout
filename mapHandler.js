@@ -100,7 +100,7 @@ function isPointInPolygon(point, polygon) {
             { lat: 39.791708, lng: -105.053037 } // Closing the polygon
         ];
         var polyZone1 = [
-            { lat: 39.653989, lng: -104.831388 }, //polyZone1 East Denver and West Aurora
+            { lat: 39.653989, lng: -104.831388 }, //polyZone1 South Aurora and Centennial
             { lat: 39.639448, lng: -104.831387 },
             { lat: 39.625964, lng: -104.832075 },
             { lat: 39.618626, lng: -104.823578 },
@@ -143,7 +143,7 @@ function isPointInPolygon(point, polygon) {
             { lat: 39.739978, lng: -104.663611 } // Closing the polygon
         ];
         var Zone3DenverEastOverlap = [
-            { lat: 39.741562, lng: -104.737414 }, // South Denver to DTC
+            { lat: 39.741562, lng: -104.737414 }, // 
             { lat: 39.752385, lng: -104.753893 },
             { lat: 39.769804, lng: -104.802302 },
             { lat: 39.772707, lng: -104.830111 },
@@ -165,7 +165,7 @@ function isPointInPolygon(point, polygon) {
             { lat: 39.741562, lng: -104.737414 } // Closing the polygon
         ];
         var Zone4DenverSouthOverlap = [
-            { lat: 39.595069, lng: -104.885081 }, //South Aurora and Centennial
+            { lat: 39.595069, lng: -104.885081 }, //South Denver to DTC
             { lat: 39.595283, lng: -104.847524 },
             { lat: 39.624378, lng: -104.847524 },
             { lat: 39.633967, lng: -104.879304 },
@@ -220,13 +220,13 @@ function onAddressSubmit() {
         } else if (isPointInPolygon(location, polySouth)) {
             window.location.href = "https://sprinkler.as.me/?appointmentType=36809706";
         } else if (isPointInPolygon(location, polyZone1)) {
-            window.location.href = "https://sprinkler.as.me/?appointmentType=36955445";
+            window.location.href = "https://sprinkler.as.me/?appointmentType=36955521";
         } else if (isPointInPolygon(location, polyZone2)) {
             window.location.href = "https://sprinkler.as.me/?appointmentType=36955481";
         } else if (isPointInPolygon(location, Zone3DenverEastOverlap)) {
-            window.location.href = "https://sprinkler.as.me/?appointmentType=36955162";
+            window.location.href = "https://sprinkler.as.me/?appointmentType=36955445";
         } else if (isPointInPolygon(location, Zone4DenverSouthOverlap)) {
-            window.location.href = "https://sprinkler.as.me/?appointmentType=36955521";
+            window.location.href = "https://sprinkler.as.me/?appointmentType=36955162";
         } else {
             alert('Address not found in the specified region');
         }
