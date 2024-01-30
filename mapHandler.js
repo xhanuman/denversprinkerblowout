@@ -1,5 +1,5 @@
 function getCoordinates(address, callback) {
-    const apiKey = 'AIzaSyBdJnHhW0iSfgtf5GSwz8BV104ky0Rm0Jw'; // Replace w your actual API Key
+    const apiKey = 'AIzaSyAggYh-nka-Ja-l0a0d4LT-QQ7QIRM-5Xc'; // Replace w your actual API Key
     var url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}`;
 
     fetch(url)

@@ -16,7 +16,6 @@ layout: default
         <button type="submit">Find Region</button>
     </form>
     <p>
-
 {% include onlinescheduling.html %}
  </p>
     <script src="mapHandler.js"></script>
