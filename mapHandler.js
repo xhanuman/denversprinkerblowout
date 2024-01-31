@@ -228,7 +228,7 @@ function onAddressSubmit() {
         } else if (isPointInPolygon(location, Zone4DenverSouthOverlap)) {
             window.location.href = "https://sprinkler.as.me/?appointmentType=36955162";
         } else {
-            alert('Address is out of our service area or please review the syntax of your entry - please ensure there is a comma after the address and enter the city at least);
+            alert('Address is out of our service area or please review the syntax of your entry - please ensure there is a comma after the address and enter the city at least');
         }
     });
 }
