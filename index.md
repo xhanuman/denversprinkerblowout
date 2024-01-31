@@ -6,14 +6,11 @@ layout: default
 ---
 
 
-<head>
-    <title>Map Redirect</title>
-</head>
 <body>
-	Map Redirect
+	Enter your address following this example:<br>(2300 Steele St, Denver 80205) w/o brackets!
     <form id="address-form">
         <input type="text" id="address-input" placeholder="Enter your address">
-        <button type="submit">Find Region</button>
+        <button type="submit">Scheduling Link</button>
     </form>
     <p>
 {% include onlinescheduling.html %}
