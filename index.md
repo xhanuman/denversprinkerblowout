@@ -7,6 +7,9 @@ layout: default
 
 
 <body>
+
+    If you've come to book a sprinkler startup - please head over to <a href="https://5280sprinklers.com">5280sprinklers.com</a> thank you.
+
 	Enter your address following this example:<br>(2300 Steele St, Denver 80205) w/o brackets!
     <form id="address-form">
         <input type="text" id="address-input" placeholder="Enter your address">
