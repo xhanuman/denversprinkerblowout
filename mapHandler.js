@@ -28,36 +28,55 @@ function onAddressSubmit(event) {
     getCoordinates(address, function(location, error) {
         if (error) {
             console.error('Geocoding error:', error);
-            document.getElementById('errorMessage').textContent = error;
-            document.getElementById('schedulingLink').href = '';
-            document.getElementById('schedulingLink').style.display = 'none';
+            var errorMessageElem = document.getElementById('errorMessage');
+            var schedulingLinkElem = document.getElementById('schedulingLink');
+            
+            if (errorMessageElem) {
+                errorMessageElem.textContent = error;
+            } else {
+                console.error('errorMessage element not found');
+            }
+            
+            if (schedulingLinkElem) {
+                schedulingLinkElem.href = '';
+                schedulingLinkElem.style.display = 'none';
+            } else {
+                console.error('schedulingLink element not found');
+            }
         } else {
             console.log('Geocoded Location:', location);
             var isInPolygon = false;
+
             // Check if the location is within each polygon and redirect accordingly
-            if (isPointInPolygon(location, polyWest)) {
-                document.getElementById('schedulingLink').href = "https://sprinkler.as.me/?appointmentType=36807385";
+            if (isPointInPolygon(location, polyS2)) {
+                updateSchedulingLink("https://sprinkler.as.me/?appointmentType=36807385");
                 isInPolygon = true;
             } else if (isPointInPolygon(location, polyS1)) {
-                document.getElementById('schedulingLink').href = "https://sprinkler.as.me/?appointmentType=36807369";
+                updateSchedulingLink("https://sprinkler.as.me/?appointmentType=36807369");
                 isInPolygon = true;
             } else if (isPointInPolygon(location, polyS3)) {
-                document.getElementById('schedulingLink').href = "https://sprinkler.as.me/?appointmentType=36824968";
+                updateSchedulingLink("https://sprinkler.as.me/?appointmentType=36824968");
                 isInPolygon = true;
             }
             // Add additional polygons if needed
 
-            if (isInPolygon) {
-                document.getElementById('schedulingLink').style.display = 'inline';
-            } else {
+            if (!isInPolygon) {
                 alert('Address is out of our service area or please review the syntax of your entry - please ensure there is a comma after the address and enter the city at a minimum');
-                document.getElementById('schedulingLink').href = '';
-                document.getElementById('schedulingLink').style.display = 'none';
+                updateSchedulingLink('');
             }
         }
     });
 }
 
+function updateSchedulingLink(href) {
+    var schedulingLinkElem = document.getElementById('schedulingLink');
+    if (schedulingLinkElem) {
+        schedulingLinkElem.href = href;
+        schedulingLinkElem.style.display = href ? 'inline' : 'none';
+    } else {
+        console.error('schedulingLink element not found');
+    }
+}
 // Define the polygons for each region
 // var polyCentral = [ /* coordinates */ ];
 // var polyEast = [ /* coordinates */ ];
