@@ -1,4 +1,6 @@
-document.getElementById('submitButton').addEventListener('click', function(event) {
+document.getElementById('addressForm').addEventListener('submit', onAddressSubmit);
+
+function onAddressSubmit(event) {
     event.preventDefault(); // Prevent the default form submission
     var address = document.getElementById('addressInput').value;
     getCoordinates(address, function(location, error) {
@@ -35,7 +37,6 @@ document.getElementById('submitButton').addEventListener('click', function(event
                 document.getElementById('schedulingLink').href = "https://sprinkler.as.me/?appointmentType=36955162";
                 isInPolygon = true;
             }
-
             if (isInPolygon) {
                 document.getElementById('schedulingLink').style.display = 'inline';
             } else {
@@ -45,7 +46,7 @@ document.getElementById('submitButton').addEventListener('click', function(event
             }
         }
     });
-});
+}
 
 
         var polyCentral = [
