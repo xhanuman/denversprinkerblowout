@@ -1,10 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Get the necessary DOM elements
-    var submitButton = document.getElementById('submitButton');
-
-    // Add the event listener to the submit button
-    if (submitButton) {
-        submitButton.addEventListener('click', function(event) {
+       function onAddressSubmit(event) {
             event.preventDefault(); // Prevent the default form submission
             var address = document.getElementById('addressInput').value;
             getCoordinates(address, function(location, error) {
@@ -50,11 +44,31 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 }
             });
-        });
-    } else {
-        console.error('submitButton element not found');
-    }
-});
+
+            // Add the event listener to the submit button here
+            var submitButton = document.getElementById('submitButton');
+            if (submitButton) {
+                submitButton.addEventListener('click', onAddressSubmit);
+            } else {
+                console.error('submitButton element not found');
+            }
+        }
+
+        document.getElementById('addressForm').addEventListener('submit', onAddressSubmit);
+
+        // Assuming these variables are defined elsewhere in your code
+        var polyCentral, polyEast, polyWest, polySouth, polyZone1, polyZone2, Zone3DenverEastOverlap, Zone4DenverSouthOverlap;
+
+        function getCoordinates(address, callback) {
+            // Implement the logic to get the coordinates for the given address
+            // and call the callback with the location and any errors
+        }
+
+        function isPointInPolygon(point, polygon) {
+            // Implement the logic to check if a point is within a polygon
+            // and return true if the point is inside the polygon, false otherwise
+        }
+    
 
 
         var polyCentral = [
