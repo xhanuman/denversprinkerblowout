@@ -58,7 +58,7 @@ function onAddressSubmit(event) {
             if (isInPolygon) {
                 window.location.href = schedulingUrl; // Redirect to the scheduling link
             } else {
-                alert('Address is out of our service area or please review the syntax of your entry - please ensure there is a comma after the address and enter the city at a minimum');
+                alert('Address is either incomplete or out of our service area or please review the syntax of your entry - please ensure there is a comma after the address and enter the city at a minimum');
             }
         }
     });
