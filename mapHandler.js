@@ -280,7 +280,7 @@ document.getElementById('submitButton').addEventListener('click', function() {
             // Clear any previous scheduling link
             document.getElementById('schedulingLink').href = '';
             document.getElementById('schedulingLink').style.display = 'none';
-        } 
+        } else {
 
         // Check if the location is within each polygon and redirect accordingly BLOWOUT LINKS
         if (isPointInPolygon(location, polyCentral)) {
