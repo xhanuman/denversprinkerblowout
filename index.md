@@ -15,11 +15,10 @@ layout: default
         <input type="text" id="addressInput" placeholder="Enter your address">
         <button type="submit">Scheduling Link</button>
     </form>
-    <p>
-        <a id="schedulingLink" href="" style="display:none;">Schedule Appointment</a>
-    </p>
+    <p id="errorMessage"></p>
     <script src="mapHandler.js"></script>
 </body>
+
 
 <!--<body>
     <p>
