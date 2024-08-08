@@ -78,16 +78,7 @@ function updateSchedulingLink(href) {
     }
 }
 // Define the polygons for each region
-// var polyCentral = [ /* coordinates */ ];
-// var polyEast = [ /* coordinates */ ];
-// var polySouth = [ /* coordinates */ ];
-// var polyZone1 = [ /* coordinates */ ];
-// var polyZone2 = [ /* coordinates */ ];
-// var Zone3DenverEastOverlap = [ /* coordinates */ ];
-// var Zone4DenverSouthOverlap = [ /* coordinates */ ];
 
-// Define the polygons for each region
-// was polyS2 temp change to polyWest
 var polyS2 = [
     [-105.0812268, 39.7790868], [-105.0813048, 39.725692], [-105.0129917, 39.72557],
     [-105.0145367, 39.729069], [-105.0154807, 39.731907], [-105.0152227, 39.733821],
