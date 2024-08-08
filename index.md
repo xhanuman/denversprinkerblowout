@@ -12,7 +12,7 @@ layout: default
     <br>
 
 	Enter your address following this example:<br>(2300 Steele St, Denver 80205) w/o brackets!
-    <form id="address-form">
+    <form id="addressForm">
         <input type="text" id="address-input" placeholder="Enter your address">
         <button type="submit">Scheduling Link</button>
     </form>
