@@ -27,11 +27,12 @@ function onAddressSubmit(event) {
 
     getCoordinates(address, function(location, error) {
         if (error) {
-            console.error(error);
+            console.error('Geocoding error:', error);
             document.getElementById('errorMessage').textContent = error;
             document.getElementById('schedulingLink').href = '';
             document.getElementById('schedulingLink').style.display = 'none';
         } else {
+            console.log('Geocoded Location:', location);
             var isInPolygon = false;
             // Check if the location is within each polygon and redirect accordingly
             if (isPointInPolygon(location, polyS2)) {
@@ -58,13 +59,13 @@ function onAddressSubmit(event) {
 }
 
 // Define the polygons for each region
-var polyCentral = [ /* coordinates */ ];
-var polyEast = [ /* coordinates */ ];
-var polySouth = [ /* coordinates */ ];
-var polyZone1 = [ /* coordinates */ ];
-var polyZone2 = [ /* coordinates */ ];
-var Zone3DenverEastOverlap = [ /* coordinates */ ];
-var Zone4DenverSouthOverlap = [ /* coordinates */ ];
+// var polyCentral = [ /* coordinates */ ];
+// var polyEast = [ /* coordinates */ ];
+// var polySouth = [ /* coordinates */ ];
+// var polyZone1 = [ /* coordinates */ ];
+// var polyZone2 = [ /* coordinates */ ];
+// var Zone3DenverEastOverlap = [ /* coordinates */ ];
+// var Zone4DenverSouthOverlap = [ /* coordinates */ ];
 
 // Define the polygons for each region
 // was polyS2 temp change to polyWest
@@ -112,10 +113,25 @@ var polyS3 = [
 
 // Function to check if a point is inside a polygon
 function isPointInPolygon(point, polygon) {
-    // Implementation of point-in-polygon algorithm
+    console.log('Checking if point is in polygon:', point, polygon);
+    // Add your point-in-polygon algorithm here
 }
 
 // Function to get coordinates from the address
 function getCoordinates(address, callback) {
-    // Implementation to convert address to coordinates and call the callback
+    const apiKey = 'AIzaSyAVGo30Lp8CbkvGMSfDafAnlpvMpyBj4Lc'; // Replace with your actual API Key
+    var url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}`;
+
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            if (data.results.length > 0) {
+                var location = data.results[0].geometry.location;
+                console.log("Geocoded Location:", location); // Debugging log
+                callback(location, null);
+            } else {
+                callback(null, 'No results found');
+            }
+        })
+        .catch(error => callback(null, error.message));
 }
