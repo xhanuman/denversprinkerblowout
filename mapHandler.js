@@ -44,10 +44,10 @@ function onAddressSubmit(event) {
 
             // Check if the location is within each polygon and set the URL accordingly
             if (isPointInPolygon(location, polyS2)) {
-                schedulingUrl = "https://sprinkler.as.me/?appointmentType=36807385";
+                schedulingUrl = "https://sprinkler.as.me/?appointmentType=36824968";
                 isInPolygon = true;
             } else if (isPointInPolygon(location, polyS1)) {
-                schedulingUrl = "https://sprinkler.as.me/?appointmentType=36807369";
+                schedulingUrl = "https://sprinkler.as.me/?appointmentType=36824968";
                 isInPolygon = true;
             } else if (isPointInPolygon(location, polyS3)) {
                 schedulingUrl = "https://sprinkler.as.me/?appointmentType=36824968";
