@@ -77,8 +77,8 @@ function updateSchedulingLink(href) {
         console.error('schedulingLink element not found');
     }
 }
-// Define the polygons for each region
 
+// Define the polygons for each region
 var polyS2 = [
     [-105.0812268, 39.7790868], [-105.0813048, 39.725692], [-105.0129917, 39.72557],
     [-105.0145367, 39.729069], [-105.0154807, 39.731907], [-105.0152227, 39.733821],
@@ -120,11 +120,21 @@ var polyS3 = [
     [-105.0815368, 39.6895375], [-105.0813396, 39.6526563]
 ];
 
-
 // Function to check if a point is inside a polygon
 function isPointInPolygon(point, polygon) {
     console.log('Checking if point is in polygon:', point, polygon);
-    // Add your point-in-polygon algorithm here
+
+    var x = point.lng;
+    var y = point.lat;
+    var inside = false;
+    for (var i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
+        var xi = polygon[i][0], yi = polygon[i][1];
+        var xj = polygon[j][0], yj = polygon[j][1];
+        var intersect = ((yi > y) != (yj > y))
+            && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
+        if (intersect) inside = !inside;
+    }
+    return inside;
 }
 
 // Function to get coordinates from the address
