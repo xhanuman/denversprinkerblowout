@@ -261,16 +261,26 @@ var polyWestNorth = [
 
 
 
-function onAddressSubmit() {
-    var address = document.getElementById('address-input').value;
-    console.log("Submitted Address:", address); // Debugging log
+// function onAddressSubmit() {
+//     var address = document.getElementById('address-input').value;
+//     console.log("Submitted Address:", address); // Debugging log
 
-    getCoordinates(address, (location, error) => {
-        if (error || !location) {
-            console.error("Geocoding Error or No Location:", error);
-            alert('Error fetching location or location not found');
-            return;
-        }
+//     getCoordinates(address, (location, error) => {
+//         if (error || !location) {
+//             console.error("Geocoding Error or No Location:", error);
+//             alert('Error fetching location or location not found');
+//             return;
+//         }
+document.getElementById('submitButton').addEventListener('click', function() {
+    var address = document.getElementById('addressInput').value;
+    getCoordinates(address, function(location, error) {
+        if (error) {
+            console.error(error);
+            document.getElementById('errorMessage').textContent = error;
+            // Clear any previous scheduling link
+            document.getElementById('schedulingLink').href = '';
+            document.getElementById('schedulingLink').style.display = 'none';
+        } 
 
         // Check if the location is within each polygon and redirect accordingly BLOWOUT LINKS
         if (isPointInPolygon(location, polyCentral)) {
