@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var form = document.getElementById('addressForm');
     if (form) {
         form.addEventListener('submit', onAddressSubmit);
+        console.log('Form event listener added.');
     } else {
         console.error('addressForm element not found');
     }
@@ -10,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function onAddressSubmit(event) {
     if (event) {
         event.preventDefault(); // Prevent the default form submission
+        console.log('Form submitted.');
     } else {
         console.error('event object is undefined');
     }
@@ -21,6 +23,8 @@ function onAddressSubmit(event) {
     }
 
     var address = addressInput.value;
+    console.log('Address:', address);
+
     getCoordinates(address, function(location, error) {
         if (error) {
             console.error(error);
@@ -30,31 +34,18 @@ function onAddressSubmit(event) {
         } else {
             var isInPolygon = false;
             // Check if the location is within each polygon and redirect accordingly
-            if (isPointInPolygon(location, polyCentral)) {
+            if (isPointInPolygon(location, polyS2)) {
                 document.getElementById('schedulingLink').href = "https://sprinkler.as.me/?appointmentType=36807385";
                 isInPolygon = true;
-            } else if (isPointInPolygon(location, polyEast)) {
+            } else if (isPointInPolygon(location, polyS1)) {
                 document.getElementById('schedulingLink').href = "https://sprinkler.as.me/?appointmentType=36807369";
                 isInPolygon = true;
-            } else if (isPointInPolygon(location, polyWest)) {
+            } else if (isPointInPolygon(location, polyS3)) {
                 document.getElementById('schedulingLink').href = "https://sprinkler.as.me/?appointmentType=36824968";
                 isInPolygon = true;
-            } else if (isPointInPolygon(location, polySouth)) {
-                document.getElementById('schedulingLink').href = "https://sprinkler.as.me/?appointmentType=36809706";
-                isInPolygon = true;
-            } else if (isPointInPolygon(location, polyZone1)) {
-                document.getElementById('schedulingLink').href = "https://sprinkler.as.me/?appointmentType=36955521";
-                isInPolygon = true;
-            } else if (isPointInPolygon(location, polyZone2)) {
-                document.getElementById('schedulingLink').href = "https://sprinkler.as.me/?appointmentType=36955481";
-                isInPolygon = true;
-            } else if (isPointInPolygon(location, Zone3DenverEastOverlap)) {
-                document.getElementById('schedulingLink').href = "https://sprinkler.as.me/?appointmentType=36955445";
-                isInPolygon = true;
-            } else if (isPointInPolygon(location, Zone4DenverSouthOverlap)) {
-                document.getElementById('schedulingLink').href = "https://sprinkler.as.me/?appointmentType=36955162";
-                isInPolygon = true;
             }
+            // Add additional polygons if needed
+
             if (isInPolygon) {
                 document.getElementById('schedulingLink').style.display = 'inline';
             } else {
