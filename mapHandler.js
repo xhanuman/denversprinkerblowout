@@ -35,7 +35,7 @@ function onAddressSubmit(event) {
             console.log('Geocoded Location:', location);
             var isInPolygon = false;
             // Check if the location is within each polygon and redirect accordingly
-            if (isPointInPolygon(location, polyS2)) {
+            if (isPointInPolygon(location, polyWest)) {
                 document.getElementById('schedulingLink').href = "https://sprinkler.as.me/?appointmentType=36807385";
                 isInPolygon = true;
             } else if (isPointInPolygon(location, polyS1)) {
