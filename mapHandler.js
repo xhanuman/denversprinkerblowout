@@ -29,7 +29,6 @@ function onAddressSubmit(event) {
         if (error) {
             console.error('Geocoding error:', error);
             var errorMessageElem = document.getElementById('errorMessage');
-            var schedulingLinkElem = document.getElementById('schedulingLink');
             
             if (errorMessageElem) {
                 errorMessageElem.textContent = error;
@@ -37,45 +36,36 @@ function onAddressSubmit(event) {
                 console.error('errorMessage element not found');
             }
             
-            if (schedulingLinkElem) {
-                schedulingLinkElem.href = '';
-                schedulingLinkElem.style.display = 'none';
-            } else {
-                console.error('schedulingLink element not found');
-            }
+            // No need to handle scheduling link here
         } else {
             console.log('Geocoded Location:', location);
             var isInPolygon = false;
+            var schedulingUrl = '';
 
-            // Check if the location is within each polygon and redirect accordingly
+            // Check if the location is within each polygon and set the URL accordingly
             if (isPointInPolygon(location, polyS2)) {
-                updateSchedulingLink("https://sprinkler.as.me/?appointmentType=36807385");
+                schedulingUrl = "https://sprinkler.as.me/?appointmentType=36807385";
                 isInPolygon = true;
             } else if (isPointInPolygon(location, polyS1)) {
-                updateSchedulingLink("https://sprinkler.as.me/?appointmentType=36807369");
+                schedulingUrl = "https://sprinkler.as.me/?appointmentType=36807369";
                 isInPolygon = true;
             } else if (isPointInPolygon(location, polyS3)) {
-                updateSchedulingLink("https://sprinkler.as.me/?appointmentType=36824968");
+                schedulingUrl = "https://sprinkler.as.me/?appointmentType=36824968";
                 isInPolygon = true;
             }
             // Add additional polygons if needed
 
-            if (!isInPolygon) {
+            if (isInPolygon) {
+                window.location.href = schedulingUrl; // Redirect to the scheduling link
+            } else {
                 alert('Address is out of our service area or please review the syntax of your entry - please ensure there is a comma after the address and enter the city at a minimum');
-                updateSchedulingLink('');
             }
         }
     });
 }
 
 function updateSchedulingLink(href) {
-    var schedulingLinkElem = document.getElementById('schedulingLink');
-    if (schedulingLinkElem) {
-        schedulingLinkElem.href = href;
-        schedulingLinkElem.style.display = href ? 'inline' : 'none';
-    } else {
-        console.error('schedulingLink element not found');
-    }
+    // No longer needed, as we are using window.location.href directly
 }
 
 // Define the polygons for each region
