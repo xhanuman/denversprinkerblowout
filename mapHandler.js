@@ -120,7 +120,6 @@ var polyS3 = [
     [-105.0815368, 39.6895375], [-105.0813396, 39.6526563]
 ];
 
-// Function to check if a point is inside a polygon
 function isPointInPolygon(point, polygon) {
     console.log('Checking if point is in polygon:', point, polygon);
 
@@ -134,8 +133,10 @@ function isPointInPolygon(point, polygon) {
             && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
         if (intersect) inside = !inside;
     }
+    console.log('Is point in polygon:', inside);
     return inside;
 }
+
 
 // Function to get coordinates from the address
 function getCoordinates(address, callback) {
