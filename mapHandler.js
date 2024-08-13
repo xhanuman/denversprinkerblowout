@@ -67,13 +67,13 @@ function onAddressSubmit(event) {
 } else if (isPointInPolygon(location, CL4_SouthDenverEast)) {
     schedulingUrl = "https://sprinkler.as.me/?appointmentType=67267596";
     isInPolygon = true;
-} else if (isPointInPolygon(location, S1_NorthWest)) {
+} else if (isPointInPolygon(location, S1_Westminster)) {
     schedulingUrl = "https://sprinkler.as.me/?appointmentType=67266960";
     isInPolygon = true;
-} else if (isPointInPolygon(location, S2_CentralWest)) {
+} else if (isPointInPolygon(location, S2_WheatridgeEdgewater)) {
     schedulingUrl = "https://sprinkler.as.me/?appointmentType=67267435";
     isInPolygon = true;
-} else if (isPointInPolygon(location, S3_SouthWest)) {
+} else if (isPointInPolygon(location, S3_Lakewood)) {
     schedulingUrl = "https://sprinkler.as.me/?appointmentType=67267564";
     isInPolygon = true;
 } else if (isPointInPolygon(location, L1_WestAurora)) {
