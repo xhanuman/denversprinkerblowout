@@ -88,10 +88,10 @@ function onAddressSubmit(event) {
 } else if (isPointInPolygon(location, L4_CentralAurora)) {
     schedulingUrl = "https://sprinkler.as.me/?appointmentType=67241271";
     isInPolygon = true;
-} else if (isPointInPolygon(location, L5_DTC_GreenwoodVillage)) {
+} else if (isPointInPolygon(location, L5_DTCGreenwoodVillage)) {
     schedulingUrl = "https://sprinkler.as.me/?appointmentType=36955481";
     isInPolygon = true;
-} else if (isPointInPolygon(location, L6_SouthAurora_Centennial)) {
+} else if (isPointInPolygon(location, L6_SouthAuroraCentennial)) {
     schedulingUrl = "https://sprinkler.as.me/?appointmentType=36955162";
     isInPolygon = true;
 } else if (isPointInPolygon(location, L7_SoutheastAurora)) {
