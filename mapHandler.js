@@ -43,10 +43,10 @@ function onAddressSubmit(event) {
             var schedulingUrl = '';
 
             // Check if the location is within each polygon and set the URL accordingly
-            if (isPointInPolygon(location, C1_Northfield)) {
+        if (isPointInPolygon(location, C1_Northfield)) {
     schedulingUrl = "https://sprinkler.as.me/?appointmentType=36809706";
     isInPolygon = true;
-} else if (isPointInPolygon(location, C2_CentralDenver)) {
+} else if (isPointInPolygon(location, C3_CentralDenver)) {
     schedulingUrl = "https://sprinkler.as.me/?appointmentType=36807385";
     isInPolygon = true;
 } else if (isPointInPolygon(location, CS1_NorthWest)) {
