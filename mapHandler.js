@@ -22,8 +22,14 @@ function onAddressSubmit(event) {
         return;
     }
 
-    var address = addressInput.value;
+    var address = addressInput.value.trim();
     console.log('Address:', address);
+
+    // Validate address input
+    if (!isValidAddress(address)) {
+        alert('Please enter a complete address, including street, (you must use a <u>comma</u> here as in the example above) city and zip code');
+        return;
+    }
 
     getCoordinates(address, function(location, error) {
         if (error) {
@@ -36,68 +42,67 @@ function onAddressSubmit(event) {
                 console.error('errorMessage element not found');
             }
             
-            // No need to handle scheduling link here
         } else {
             console.log('Geocoded Location:', location);
             var isInPolygon = false;
             var schedulingUrl = '';
 
             // Check if the location is within each polygon and set the URL accordingly
-        if (isPointInPolygon(location, C1_Northfield)) {
-    schedulingUrl = "https://sprinkler.as.me/?appointmentType=36809706";
-    isInPolygon = true;
-} else if (isPointInPolygon(location, C3_CentralDenver)) {
-    schedulingUrl = "https://sprinkler.as.me/?appointmentType=36807385";
-    isInPolygon = true;
-} else if (isPointInPolygon(location, CS1_NorthWest)) {
-    schedulingUrl = "https://sprinkler.as.me/?appointmentType=38136540";
-    isInPolygon = true;
-} else if (isPointInPolygon(location, CS2_SouthWest)) {
-    schedulingUrl = "https://sprinkler.as.me/?appointmentType=52547839";
-    isInPolygon = true;
-} else if (isPointInPolygon(location, CL1_DenverCountryClub)) {
-    schedulingUrl = "https://sprinkler.as.me/?appointmentType=36955521";
-    isInPolygon = true;
-} else if (isPointInPolygon(location, CL2_EastDenver)) {
-    schedulingUrl = "https://sprinkler.as.me/?appointmentType=36824968";
-    isInPolygon = true;
-} else if (isPointInPolygon(location, CL3_SouthDenverWest)) {
-    schedulingUrl = "https://sprinkler.as.me/?appointmentType=36807369";
-    isInPolygon = true;
-} else if (isPointInPolygon(location, CL4_SouthDenverEast)) {
-    schedulingUrl = "https://sprinkler.as.me/?appointmentType=67267596";
-    isInPolygon = true;
-} else if (isPointInPolygon(location, S1_Westminster)) {
-    schedulingUrl = "https://sprinkler.as.me/?appointmentType=67266960";
-    isInPolygon = true;
-} else if (isPointInPolygon(location, S2_WheatridgeEdgewater)) {
-    schedulingUrl = "https://sprinkler.as.me/?appointmentType=67267435";
-    isInPolygon = true;
-} else if (isPointInPolygon(location, S3_Lakewood)) {
-    schedulingUrl = "https://sprinkler.as.me/?appointmentType=67267564";
-    isInPolygon = true;
-} else if (isPointInPolygon(location, L1_WestAurora)) {
-    schedulingUrl = "https://sprinkler.as.me/?appointmentType=36955445";
-    isInPolygon = true;
-} else if (isPointInPolygon(location, L2_NorthAurora)) {
-    schedulingUrl = "https://sprinkler.as.me/?appointmentType=67267848";
-    isInPolygon = true;
-} else if (isPointInPolygon(location, L3_FarEast)) {
-    schedulingUrl = "https://sprinkler.as.me/?appointmentType=67269948";
-    isInPolygon = true;
-} else if (isPointInPolygon(location, L4_CentralAurora)) {
-    schedulingUrl = "https://sprinkler.as.me/?appointmentType=67241271";
-    isInPolygon = true;
-} else if (isPointInPolygon(location, L5_DTCGreenwoodVillage)) {
-    schedulingUrl = "https://sprinkler.as.me/?appointmentType=36955481";
-    isInPolygon = true;
-} else if (isPointInPolygon(location, L6_SouthAuroraCentennial)) {
-    schedulingUrl = "https://sprinkler.as.me/?appointmentType=36955162";
-    isInPolygon = true;
-} else if (isPointInPolygon(location, L7_SoutheastAurora)) {
-    schedulingUrl = "https://sprinkler.as.me/?appointmentType=67267792";
-    isInPolygon = true;
-}
+            if (isPointInPolygon(location, C1_Northfield)) {
+                schedulingUrl = "https://sprinkler.as.me/?appointmentType=36809706";
+                isInPolygon = true;
+            } else if (isPointInPolygon(location, C3_CentralDenver)) {
+                schedulingUrl = "https://sprinkler.as.me/?appointmentType=36807385";
+                isInPolygon = true;
+            } else if (isPointInPolygon(location, CS1_NorthWest)) {
+                schedulingUrl = "https://sprinkler.as.me/?appointmentType=38136540";
+                isInPolygon = true;
+            } else if (isPointInPolygon(location, CS2_SouthWest)) {
+                schedulingUrl = "https://sprinkler.as.me/?appointmentType=52547839";
+                isInPolygon = true;
+            } else if (isPointInPolygon(location, CL1_DenverCountryClub)) {
+                schedulingUrl = "https://sprinkler.as.me/?appointmentType=36955521";
+                isInPolygon = true;
+            } else if (isPointInPolygon(location, CL2_EastDenver)) {
+                schedulingUrl = "https://sprinkler.as.me/?appointmentType=36824968";
+                isInPolygon = true;
+            } else if (isPointInPolygon(location, CL3_SouthDenverWest)) {
+                schedulingUrl = "https://sprinkler.as.me/?appointmentType=36807369";
+                isInPolygon = true;
+            } else if (isPointInPolygon(location, CL4_SouthDenverEast)) {
+                schedulingUrl = "https://sprinkler.as.me/?appointmentType=67267596";
+                isInPolygon = true;
+            } else if (isPointInPolygon(location, S1_Westminster)) {
+                schedulingUrl = "https://sprinkler.as.me/?appointmentType=67266960";
+                isInPolygon = true;
+            } else if (isPointInPolygon(location, S2_WheatridgeEdgewater)) {
+                schedulingUrl = "https://sprinkler.as.me/?appointmentType=67267435";
+                isInPolygon = true;
+            } else if (isPointInPolygon(location, S3_Lakewood)) {
+                schedulingUrl = "https://sprinkler.as.me/?appointmentType=67267564";
+                isInPolygon = true;
+            } else if (isPointInPolygon(location, L1_WestAurora)) {
+                schedulingUrl = "https://sprinkler.as.me/?appointmentType=36955445";
+                isInPolygon = true;
+            } else if (isPointInPolygon(location, L2_NorthAurora)) {
+                schedulingUrl = "https://sprinkler.as.me/?appointmentType=67267848";
+                isInPolygon = true;
+            } else if (isPointInPolygon(location, L3_FarEast)) {
+                schedulingUrl = "https://sprinkler.as.me/?appointmentType=67269948";
+                isInPolygon = true;
+            } else if (isPointInPolygon(location, L4_CentralAurora)) {
+                schedulingUrl = "https://sprinkler.as.me/?appointmentType=67241271";
+                isInPolygon = true;
+            } else if (isPointInPolygon(location, L5_DTCGreenwoodVillage)) {
+                schedulingUrl = "https://sprinkler.as.me/?appointmentType=36955481";
+                isInPolygon = true;
+            } else if (isPointInPolygon(location, L6_SouthAuroraCentennial)) {
+                schedulingUrl = "https://sprinkler.as.me/?appointmentType=36955162";
+                isInPolygon = true;
+            } else if (isPointInPolygon(location, L7_SoutheastAurora)) {
+                schedulingUrl = "https://sprinkler.as.me/?appointmentType=67267792";
+                isInPolygon = true;
+            }
 
             if (isInPolygon) {
                 window.location.href = schedulingUrl; // Redirect to the scheduling link
@@ -108,12 +113,52 @@ function onAddressSubmit(event) {
     });
 }
 
-function updateSchedulingLink(href) {
-    // No longer needed, as we are using window.location.href directly
+function isValidAddress(address) {
+    // Basic check: Ensure address contains at least a number and a comma
+    const hasStreetNumber = /\d+/.test(address);
+    const hasComma = /,/.test(address);
+    
+    return hasStreetNumber && hasComma;
+}
+
+// Function to check if a point is inside a polygon
+function isPointInPolygon(point, polygon) {
+    console.log('Checking if point is in polygon:', point, polygon);
+
+    var x = point.lng;
+    var y = point.lat;
+    var inside = false;
+    for (var i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
+        var xi = polygon[i][0], yi = polygon[i][1];
+        var xj = polygon[j][0], yj = polygon[j][1];
+        var intersect = ((yi > y) != (yj > y))
+            && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
+        if (intersect) inside = !inside;
+    }
+    console.log('Is point in polygon:', inside);
+    return inside;
+}
+
+// Function to get coordinates from the address
+function getCoordinates(address, callback) {
+    const apiKey = 'AIzaSyAVGo30Lp8CbkvGMSfDafAnlpvMpyBj4Lc'; // Replace with your actual API Key
+    var url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}`;
+
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            if (data.results.length > 0) {
+                var location = data.results[0].geometry.location;
+                console.log("Geocoded Location:", location); // Debugging log
+                callback(location, null);
+            } else {
+                callback(null, 'No results found');
+            }
+        })
+        .catch(error => callback(null, error.message));
 }
 
 // Define the polygons for each region
-
 var C1_Northfield = [
     [-104.885152, 39.812809],
     [-104.904378, 39.777593],
@@ -447,40 +492,3 @@ var CL2_EastDenver = [
     [-104.930814, 39.77944],
     [-104.940084, 39.779704]
 ];
-
-// Function to check if a point is inside a polygon
-function isPointInPolygon(point, polygon) {
-    console.log('Checking if point is in polygon:', point, polygon);
-
-    var x = point.lng;
-    var y = point.lat;
-    var inside = false;
-    for (var i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
-        var xi = polygon[i][0], yi = polygon[i][1];
-        var xj = polygon[j][0], yj = polygon[j][1];
-        var intersect = ((yi > y) != (yj > y))
-            && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
-        if (intersect) inside = !inside;
-    }
-    console.log('Is point in polygon:', inside);
-    return inside;
-}
-
-// Function to get coordinates from the address
-function getCoordinates(address, callback) {
-    const apiKey = 'AIzaSyAVGo30Lp8CbkvGMSfDafAnlpvMpyBj4Lc'; // Replace with your actual API Key
-    var url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}`;
-
-    fetch(url)
-        .then(response => response.json())
-        .then(data => {
-            if (data.results.length > 0) {
-                var location = data.results[0].geometry.location;
-                console.log("Geocoded Location:", location); // Debugging log
-                callback(location, null);
-            } else {
-                callback(null, 'No results found');
-            }
-        })
-        .catch(error => callback(null, error.message));
-}
