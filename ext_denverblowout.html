@@ -503,11 +503,19 @@ var CL2_EastDenver = [
     </script>
 </head>
 <body>
+     <form id="addressForm" style="text-align: center; margin-top: 50px;">
+    <label for="address" style="display: block;">Enter your address following this example:</label>
+    (2300 Steele St, Denver 80205) w/o brackets and using a COMMA is necessary after the address!<br><br>
+    <input type="text" id="addressInput" placeholder="Enter your address" style="text-align: left; width: 400px;">
+    <br><br>
+    <button type="submit">Scheduling Link</button>
+<!--
     <form id="addressForm">
         <label for="addressInput">Enter your address:</label>
         <input type="text" id="addressInput" name="addressInput" required>
         <button type="submit">Submit</button>
     </form>
     <div id="errorMessage" style="color: red;"></div>
+-->
 </body>
 </html>
