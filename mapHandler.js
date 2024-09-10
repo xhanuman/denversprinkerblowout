@@ -27,7 +27,7 @@ function onAddressSubmit(event) {
 
     // Validate address input
     if (!isValidAddress(address)) {
-        alert('Please enter a complete address, including street, (you must use a <u>comma</u> here as in the example above) city and zip code');
+        alert('Please enter a complete address, including street, (you must use a COMMA here as in the example above) city and zip code');
         return;
     }
 
