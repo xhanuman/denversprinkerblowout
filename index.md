@@ -12,7 +12,8 @@ layout: default
     <br>
 
     <form id="addressForm">
-        <input type="text" id="sprinkler-info" value="Enter your address following this example:<br>(2300 Steele St, Denver 80205) w/o brackets and using a COMMA is necessary after the address!" disabled><br>
+        <label for="address">Enter your address following this example:</label><br>
+  (2300 Steele St, Denver 80205) w/o brackets and using a COMMA is necessary after the address!<br><br>
         <input type="text" id="addressInput" placeholder="Enter your address">
         <button type="submit">Scheduling Link</button>
     </form>
