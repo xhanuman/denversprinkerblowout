@@ -27,7 +27,7 @@ layout: default
     -->
     <br>
 
-<!--
+
     <form id="addressForm" style="text-align: center; margin-top: 50px;">
     <label for="address" style="display: block;">Enter your address following this example:</label>
     (2300 Steele St, Denver 80205) w/o brackets and using a COMMA is necessary after the address!<br><br>
@@ -38,5 +38,5 @@ layout: default
 
     <p id="errorMessage"></p>
     <script src="mapHandler.js"></script>
--->
+
 </body>
