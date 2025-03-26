@@ -19,8 +19,8 @@ layout: default
   <li><strong>Conrad</strong> (Northfield, East/Central/West/South Denver)</li>
 </ul>
 
-<p><em>Schedule today for a worry-free Spring… and beyond!</em></p>
-<p>Scheduling available soon - check back on 3/25/25</p>
+<p><em>Now scheduling for Sprinkler Startup and repair in Denver and surrounding areas</em></p>
+
     <!--<h5>
         Welcome to Denver’s premier sprinkler blowout and winterization service! As the cold season approaches, it's crucial to protect your irrigation system. Our expert team specializes in sprinkler blowout in Denver, ensuring your system is fully prepared for winter. Trust us for fast, reliable Denver sprinkler blowout and irrigation system winterization to safeguard your investment and avoid costly repairs. Depending on your location, you'll be able to book with Shane (West Denver), Leif Denver, Aurora and DTC/surrounding and/or Conrad in Denver primarily (Northfield, East/Central/West/South) today for peace of mind this Winter!
     </h5>
