@@ -31,7 +31,7 @@ layout: default
 
 
 <form id="addressForm" style="text-align: center; margin-top: 50px;">
-    <label for="address" style="display: block;">Enter your address following this example:</label>
+    <label for="address" style="display: block;">Please do not attempt to book just YET (as of Sept 3)Enter your address following this example:</label>
     (2300 Steele St, Denver 80205) w/o brackets and using a COMMA is necessary after the address!<br><br>
     <input type="text" id="addressInput" placeholder="Enter your address" style="text-align: left; width: 400px;">
     <br><br>
