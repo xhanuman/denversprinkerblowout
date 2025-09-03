@@ -8,7 +8,8 @@ layout: default
 <body>
     <h5>Welcome to Denver’s trusted sprinkler startup, repair, and seasonal maintenance service!</h5>
 
-<p>As warmer weather arrives, now is the time to ensure your irrigation system is ready for peak performance. Our skilled professionals specialize in <strong>sprinkler startup and repairs</strong> across Denver, helping your system run efficiently all Spring and Summer.</p>
+<!--<p>As warmer weather arrives, now is the time to ensure your irrigation system is ready for peak performance. Our skilled professionals specialize in <strong>sprinkler startup and repairs</strong> across Denver, helping your system run efficiently all Spring and Summer.</p>
+-->
 
 <p>Looking ahead, we also provide <strong>expert sprinkler blowout and winterization services</strong> when Fall arrives—so you’re covered year-round. Fast, reliable, and tailored to your needs, we help you avoid costly issues and keep your irrigation system in top shape.</p>
 
@@ -19,16 +20,17 @@ layout: default
   <li><strong>Conrad</strong> (Northfield, East/Central/West/South Denver)</li>
 </ul>
 
-<p><em>Now scheduling for Sprinkler Startup and repair in Denver and surrounding areas</em></p>
+<p><em>As of Sept 3, we are almost ready for (please hold off just a few more days) Scheduling for 2025 Denver and surrounding areas for Winterization and Blowout appointments for Denver and surrounding area! (if you've input your address correctly and you aren't presented with a scheduling link your address is likely outside of our service area</em>
+</p>
 
-    <!--<h5>
+<h5>
         Welcome to Denver’s premier sprinkler blowout and winterization service! As the cold season approaches, it's crucial to protect your irrigation system. Our expert team specializes in sprinkler blowout in Denver, ensuring your system is fully prepared for winter. Trust us for fast, reliable Denver sprinkler blowout and irrigation system winterization to safeguard your investment and avoid costly repairs. Depending on your location, you'll be able to book with Shane (West Denver), Leif Denver, Aurora and DTC/surrounding and/or Conrad in Denver primarily (Northfield, East/Central/West/South) today for peace of mind this Winter!
-    </h5>
-    -->
+</h5>
+    
     <br>
 
 
-    <form id="addressForm" style="text-align: center; margin-top: 50px;">
+<form id="addressForm" style="text-align: center; margin-top: 50px;">
     <label for="address" style="display: block;">Enter your address following this example:</label>
     (2300 Steele St, Denver 80205) w/o brackets and using a COMMA is necessary after the address!<br><br>
     <input type="text" id="addressInput" placeholder="Enter your address" style="text-align: left; width: 400px;">
