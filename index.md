@@ -29,7 +29,7 @@ layout: default
     
     <br>
 
-
+<!--
 <form id="addressForm" style="text-align: center; margin-top: 50px;">
     <label for="address" style="display: block;">Please do not attempt to book just YET (as of Sept 3)Enter your address following this example:</label>
     (2300 Steele St, Denver 80205) w/o brackets and using a COMMA is necessary after the address!<br><br>
@@ -37,7 +37,7 @@ layout: default
     <br><br>
     <button type="submit">Scheduling Link</button>
 </form>
-
+-->
     <p id="errorMessage"></p>
     <script src="mapHandler.js"></script>
 
