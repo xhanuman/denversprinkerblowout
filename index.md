@@ -20,7 +20,7 @@ layout: default
   <li><strong>Conrad</strong> (Northfield, East/Central/West/South Denver)</li>
 </ul>
 
-<p><em>As of Sept 3, we are almost ready for (please hold off just a few more days) Scheduling for 2025 Denver and surrounding areas for Winterization and Blowout appointments for Denver and surrounding area! (if you've input your address correctly and you aren't presented with a scheduling link your address is likely outside of our service area</em>
+<p><em>Scheduling for 2025 Denver and surrounding areas for Winterization and Blowout appointments for Denver and surrounding area! (if you've input your address correctly and you aren't presented with a scheduling link your address is likely outside of our service area</em>
 </p>
 
 <h5>
@@ -29,15 +29,15 @@ layout: default
     
     <br>
 
-<!--
+
 <form id="addressForm" style="text-align: center; margin-top: 50px;">
-    <label for="address" style="display: block;">Please do not attempt to book just YET (as of Sept 3)Enter your address following this example:</label>
+    <label for="address" style="display: block;">Enter your address following this example:</label>
     (2300 Steele St, Denver 80205) w/o brackets and using a COMMA is necessary after the address!<br><br>
     <input type="text" id="addressInput" placeholder="Enter your address" style="text-align: left; width: 400px;">
     <br><br>
     <button type="submit">Scheduling Link</button>
 </form>
--->
+
     <p id="errorMessage"></p>
     <script src="mapHandler.js"></script>
 
