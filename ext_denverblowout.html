@@ -1112,8 +1112,7 @@
                     if (isPointInPolygon(location, zones[i].polygon)) {
                         // Save well-formatted address for next visit
                         localStorage.setItem('sprinklerAddress', address);
-                        // Navigate top window so booking page isn't trapped in iframe
-                        try { window.top.location.href = zones[i].url; } catch(e) { window.location.href = zones[i].url; }
+                        window.location.href = zones[i].url;
                         return;
                     }
                 }
