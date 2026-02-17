@@ -1072,6 +1072,11 @@
                 event.preventDefault();
             }
 
+            // Ask parent page to scroll iframe to top of viewport
+            if (window.parent !== window) {
+                window.parent.postMessage('scrollToBooking', '*');
+            }
+
             var addressInput = document.getElementById('addressInput');
             if (!addressInput) {
                 return;
