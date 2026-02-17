@@ -17,9 +17,13 @@
         #serviceSelector strong {
             font-family: 'Lora', 'Helvetica Neue', Arial, sans-serif;
         }
+        #serviceSelector .radio-group {
+            display: inline-block;
+            text-align: left;
+        }
         #serviceSelector label {
             display: block;
-            margin: 6px auto;
+            margin: 6px 0;
             cursor: pointer;
             font-size: 14px;
         }
@@ -1034,6 +1038,15 @@
                 form.addEventListener('submit', onAddressSubmit);
             }
 
+            // Restore saved address (only if it contains a comma)
+            var savedAddress = localStorage.getItem('sprinklerAddress');
+            if (savedAddress && savedAddress.indexOf(',') !== -1) {
+                var addressInput = document.getElementById('addressInput');
+                if (addressInput) {
+                    addressInput.value = savedAddress;
+                }
+            }
+
             // Seasonal auto-select: Jan-Aug = startup, Sep-Dec = blowout
             var month = new Date().getMonth(); // 0-11
             if (month >= 8) { // Sep-Dec
@@ -1095,6 +1108,8 @@
                 // Check each zone's polygon
                 for (var i = 0; i < zones.length; i++) {
                     if (isPointInPolygon(location, zones[i].polygon)) {
+                        // Save well-formatted address for next visit
+                        localStorage.setItem('sprinklerAddress', address);
                         window.location.href = zones[i].url;
                         return;
                     }
@@ -1148,9 +1163,11 @@
 <body>
     <div id="serviceSelector">
         <strong>Select your service:</strong><br>
-        <label><input type="radio" name="serviceType" value="startup"> Spring Start Ups</label>
-        <label class="disabled"><input type="radio" name="serviceType" value="blowout" disabled> Fall Winterization/Blowout (coming soon)</label>
-        <label><input type="radio" name="serviceType" value="lawncare"> Lawn Care</label>
+        <div class="radio-group">
+            <label><input type="radio" name="serviceType" value="startup"> Spring Start Ups</label>
+            <label class="disabled"><input type="radio" name="serviceType" value="blowout" disabled> Fall Winterization/Blowout (coming soon)</label>
+            <label><input type="radio" name="serviceType" value="lawncare"> Lawn Care</label>
+        </div>
     </div>
 
     <form id="addressForm" style="text-align: center; margin-top: 20px; font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;">
