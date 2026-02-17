@@ -9,10 +9,12 @@
     <style>
         body {
             font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
         }
         #serviceSelector {
             text-align: center;
-            margin: 20px auto 10px;
+            margin: 8px auto 4px;
         }
         #serviceSelector strong {
             font-family: 'Lora', 'Helvetica Neue', Arial, sans-serif;
@@ -23,7 +25,7 @@
         }
         #serviceSelector label {
             display: block;
-            margin: 6px 0;
+            margin: 3px 0;
             cursor: pointer;
             font-size: 14px;
         }
@@ -1170,12 +1172,12 @@
         </div>
     </div>
 
-    <form id="addressForm" style="text-align: center; margin-top: 20px; font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;">
-        <label for="addressInput" style="display: block;">Enter your address following this example:</label>
-        (2300 Steele St, Denver 80205) w/o brackets and using a COMMA is necessary after the address!<br><br>
-        <input type="text" id="addressInput" placeholder="Enter your address" style="text-align: left; width: 400px;">
-        <br><br>
-        <button type="submit">Scheduling Link</button>
+    <form id="addressForm" style="text-align: center; margin-top: 8px; font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;">
+        <label for="addressInput" style="display: block; margin-bottom: 2px;">Enter your address following this example:</label>
+        <small>(2300 Steele St, Denver 80205) w/o brackets and using a COMMA is necessary after the address!</small><br>
+        <input type="text" id="addressInput" placeholder="Enter your address" style="text-align: left; width: 400px; margin-top: 6px;">
+        <br>
+        <button type="submit" style="margin-top: 6px;">Scheduling Link</button>
     </form>
     <p id="errorMessage" style="color: red; text-align: center;"></p>
 </body>
