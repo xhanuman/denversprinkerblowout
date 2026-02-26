@@ -2,7 +2,7 @@
 title: 'Conrad Olivier'
 image: '/images/team/conrad-olivier-unsplash.jpg'
 jobtitle: 'Propietor'
-email: '5280sprinkler@gmail.com'
+email: 'contact@5280sprinklers.com'
 linkedinurl: 'https://www.linkedin.com/'
 ---
 
