@@ -134,7 +134,7 @@ function showConfirmationCard(formattedAddress, meta, acuityUrl) {
     var errorElem = document.getElementById('errorMessage');
     if (errorElem) errorElem.textContent = '';
 
-    var bookingUrl = acuityUrl + '&fields[field-14727722]=' + encodeURIComponent(formattedAddress);
+    var bookingUrl = acuityUrl + '&field[14727722]=' + encodeURIComponent(formattedAddress);
 
     var card = document.createElement('div');
     card.id = 'confirmationCard';
