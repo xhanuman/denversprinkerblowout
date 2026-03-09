@@ -1980,7 +1980,7 @@
                 return;
             }
 
-            getCoordinates(address, function(location, error) {
+            getCoordinates(address, function(location, formattedAddress, error) {
                 if (error) {
                     var errorMessageElem = document.getElementById('errorMessage');
                     if (errorMessageElem) {
@@ -1992,9 +1992,8 @@
                 // Check each zone's polygon
                 for (var i = 0; i < zones.length; i++) {
                     if (isPointInPolygon(location, zones[i].polygon)) {
-                        // Save well-formatted address for next visit
                         localStorage.setItem('sprinklerAddress', address);
-                        window.location.href = zones[i].url;
+                        showConfirmationCard(formattedAddress || address, zones[i].name, zones[i].url);
                         return;
                     }
                 }
@@ -2034,13 +2033,70 @@
                 .then(function(response) { return response.json(); })
                 .then(function(data) {
                     if (data.results.length > 0) {
-                        var location = data.results[0].geometry.location;
-                        callback(location, null);
+                        var result = data.results[0];
+                        callback(result.geometry.location, result.formatted_address, null);
                     } else {
-                        callback(null, 'No results found');
+                        callback(null, null, 'No results found');
                     }
                 })
-                .catch(function(error) { callback(null, error.message); });
+                .catch(function(error) { callback(null, null, error.message); });
+        }
+
+        function showConfirmationCard(formattedAddress, zoneName, acuityUrl) {
+            var form = document.getElementById('addressForm');
+            var serviceSelector = document.getElementById('serviceSelector');
+            var errorElem = document.getElementById('errorMessage');
+            if (errorElem) errorElem.textContent = '';
+
+            var bookingUrl = acuityUrl + '&fields[field-14727722]=' + encodeURIComponent(formattedAddress);
+
+            var card = document.createElement('div');
+            card.id = 'confirmationCard';
+            card.innerHTML = [
+                '<div style="max-width:480px;margin:16px auto;padding:24px;',
+                'border:2px solid #4caf50;border-radius:8px;background:#f9fff9;',
+                'text-align:center;font-family:\'Open Sans\',Arial,sans-serif;">',
+                '<h4 style="color:#2a2d33;margin-bottom:12px;">Confirm Your Service Address</h4>',
+                '<p style="font-size:16px;font-weight:bold;color:#2a2d33;margin-bottom:8px;">',
+                escapeHtml(formattedAddress),
+                '</p>',
+                '<p style="font-size:14px;color:#596570;margin-bottom:8px;">',
+                'Service area: <strong>', escapeHtml(zoneName), '</strong>',
+                '</p>',
+                '<p style="font-size:12px;color:#888;margin-bottom:20px;">',
+                'You&rsquo;ll be asked to enter your address again in the next step &mdash; please use the same address shown above.',
+                '</p>',
+                '<button id="confirmBookingBtn" style="background:#4caf50;color:#fff;border:none;',
+                'padding:12px 28px;font-size:16px;border-radius:4px;cursor:pointer;margin-bottom:12px;">',
+                'Book at this address &rarr;</button><br>',
+                '<a id="changeAddressLink" href="#" style="font-size:13px;color:#596570;">',
+                'Use a different address</a>',
+                '</div>'
+            ].join('');
+
+            if (serviceSelector) serviceSelector.style.display = 'none';
+            form.style.display = 'none';
+            form.parentNode.insertBefore(card, form.nextSibling);
+
+            document.getElementById('confirmBookingBtn').onclick = function() {
+                window.location.href = bookingUrl;
+            };
+            document.getElementById('changeAddressLink').onclick = function(e) {
+                e.preventDefault();
+                card.remove();
+                if (serviceSelector) serviceSelector.style.display = '';
+                form.style.display = '';
+                document.getElementById('addressInput').value = '';
+                document.getElementById('addressInput').focus();
+            };
+        }
+
+        function escapeHtml(str) {
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;');
         }
     </script>
 </head>
