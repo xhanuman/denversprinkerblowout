@@ -1,3 +1,25 @@
+// Zone display names (used in confirmation card)
+var ZONE_META = {
+    C1_Northfield:            { name: "Northfield"               },
+    C3_CentralDenver:         { name: "Central Denver"           },
+    CS1_NorthWest:            { name: "Northwest / Arvada"       },
+    CS2_SouthWest:            { name: "Southwest / Lakewood"     },
+    CL1_DenverCountryClub:    { name: "Denver Country Club"      },
+    CL2_EastDenver:           { name: "East Denver"              },
+    CL3_SouthDenverWest:      { name: "South Denver West"        },
+    CL4_SouthDenverEast:      { name: "South Denver East"        },
+    S1_Westminster:           { name: "Westminster"              },
+    S2_WheatridgeEdgewater:   { name: "Wheat Ridge / Edgewater"  },
+    S3_Lakewood:              { name: "Lakewood"                 },
+    L1_WestAurora:            { name: "West Aurora"              },
+    L2_NorthAurora:           { name: "North Aurora"             },
+    L3_FarEast:               { name: "Far East Aurora"          },
+    L4_CentralAurora:         { name: "Central Aurora"           },
+    L5_DTCGreenwoodVillage:   { name: "DTC / Greenwood Village"  },
+    L6_SouthAuroraCentennial: { name: "South Aurora / Centennial"},
+    L7_SoutheastAurora:       { name: "Southeast Aurora"         }
+};
+
 document.addEventListener('DOMContentLoaded', function() {
     var form = document.getElementById('addressForm');
     if (form) {
@@ -31,81 +53,30 @@ function onAddressSubmit(event) {
         return;
     }
 
-    getCoordinates(address, function(location, error) {
+    getCoordinates(address, function(location, formattedAddress, error) {
         if (error) {
             console.error('Geocoding error:', error);
             var errorMessageElem = document.getElementById('errorMessage');
-            
+
             if (errorMessageElem) {
                 errorMessageElem.textContent = error;
             } else {
                 console.error('errorMessage element not found');
             }
-            
+
         } else {
             console.log('Geocoded Location:', location);
-            var isInPolygon = false;
-            var schedulingUrl = '';
 
-            // Check if the location is within each polygon and set the URL accordingly
-            if (isPointInPolygon(location, C1_Northfield)) {
-                schedulingUrl = "https://sprinkler.as.me/?appointmentType=36809706";
-                isInPolygon = true;
-            } else if (isPointInPolygon(location, C3_CentralDenver)) {
-                schedulingUrl = "https://sprinkler.as.me/?appointmentType=36807385";
-                isInPolygon = true;
-            } else if (isPointInPolygon(location, CS1_NorthWest)) {
-                schedulingUrl = "https://sprinkler.as.me/?appointmentType=38136540";
-                isInPolygon = true;
-            } else if (isPointInPolygon(location, CS2_SouthWest)) {
-                schedulingUrl = "https://sprinkler.as.me/?appointmentType=52547839";
-                isInPolygon = true;
-            } else if (isPointInPolygon(location, CL1_DenverCountryClub)) {
-                schedulingUrl = "https://sprinkler.as.me/?appointmentType=36955521";
-                isInPolygon = true;
-            } else if (isPointInPolygon(location, CL2_EastDenver)) {
-                schedulingUrl = "https://sprinkler.as.me/?appointmentType=36824968";
-                isInPolygon = true;
-            } else if (isPointInPolygon(location, CL3_SouthDenverWest)) {
-                schedulingUrl = "https://sprinkler.as.me/?appointmentType=36807369";
-                isInPolygon = true;
-            } else if (isPointInPolygon(location, CL4_SouthDenverEast)) {
-                schedulingUrl = "https://sprinkler.as.me/?appointmentType=67267596";
-                isInPolygon = true;
-            } else if (isPointInPolygon(location, S1_Westminster)) {
-                schedulingUrl = "https://sprinkler.as.me/?appointmentType=67266960";
-                isInPolygon = true;
-            } else if (isPointInPolygon(location, S2_WheatridgeEdgewater)) {
-                schedulingUrl = "https://sprinkler.as.me/?appointmentType=67267435";
-                isInPolygon = true;
-            } else if (isPointInPolygon(location, S3_Lakewood)) {
-                schedulingUrl = "https://sprinkler.as.me/?appointmentType=67267564";
-                isInPolygon = true;
-            } else if (isPointInPolygon(location, L1_WestAurora)) {
-                schedulingUrl = "https://sprinkler.as.me/?appointmentType=36955445";
-                isInPolygon = true;
-            } else if (isPointInPolygon(location, L2_NorthAurora)) {
-                schedulingUrl = "https://sprinkler.as.me/?appointmentType=67267848";
-                isInPolygon = true;
-            } else if (isPointInPolygon(location, L3_FarEast)) {
-                schedulingUrl = "https://sprinkler.as.me/?appointmentType=67269948";
-                isInPolygon = true;
-            } else if (isPointInPolygon(location, L4_CentralAurora)) {
-                schedulingUrl = "https://sprinkler.as.me/?appointmentType=67241271";
-                isInPolygon = true;
-            } else if (isPointInPolygon(location, L5_DTCGreenwoodVillage)) {
-                schedulingUrl = "https://sprinkler.as.me/?appointmentType=36955481";
-                isInPolygon = true;
-            } else if (isPointInPolygon(location, L6_SouthAuroraCentennial)) {
-                schedulingUrl = "https://sprinkler.as.me/?appointmentType=36955162";
-                isInPolygon = true;
-            } else if (isPointInPolygon(location, L7_SoutheastAurora)) {
-                schedulingUrl = "https://sprinkler.as.me/?appointmentType=67267792";
-                isInPolygon = true;
+            var matched = null;
+            for (var i = 0; i < ZONES.length; i++) {
+                if (isPointInPolygon(location, ZONES[i].polygon)) {
+                    matched = ZONES[i];
+                    break;
+                }
             }
 
-            if (isInPolygon) {
-                window.location.href = schedulingUrl; // Redirect to the scheduling link
+            if (matched) {
+                showConfirmationCard(formattedAddress || address, ZONE_META[matched.key], matched.url);
             } else {
                 alert('Address is either incomplete or out of our service area or please review the syntax of your entry - please ensure there is a comma after the address and enter the city at a minimum');
             }
@@ -148,14 +119,65 @@ function getCoordinates(address, callback) {
         .then(response => response.json())
         .then(data => {
             if (data.results.length > 0) {
-                var location = data.results[0].geometry.location;
-                console.log("Geocoded Location:", location); // Debugging log
-                callback(location, null);
+                var result = data.results[0];
+                console.log("Geocoded Location:", result.geometry.location); // Debugging log
+                callback(result.geometry.location, result.formatted_address, null);
             } else {
-                callback(null, 'No results found');
+                callback(null, null, 'No results found');
             }
         })
-        .catch(error => callback(null, error.message));
+        .catch(error => callback(null, null, error.message));
+}
+
+function showConfirmationCard(formattedAddress, meta, acuityUrl) {
+    var form = document.getElementById('addressForm');
+    var errorElem = document.getElementById('errorMessage');
+    if (errorElem) errorElem.textContent = '';
+
+    var bookingUrl = acuityUrl + '&fields[field-14727722]=' + encodeURIComponent(formattedAddress);
+
+    var card = document.createElement('div');
+    card.id = 'confirmationCard';
+    card.innerHTML = [
+        '<div style="max-width:480px;margin:30px auto;padding:24px;',
+        'border:2px solid #4caf50;border-radius:8px;background:#f9fff9;',
+        'text-align:center;font-family:Roboto,sans-serif;">',
+        '<h4 style="color:#2a2d33;margin-bottom:12px;">Confirm Your Service Address</h4>',
+        '<p style="font-size:16px;font-weight:bold;color:#2a2d33;margin-bottom:8px;">',
+        escapeHtml(formattedAddress),
+        '</p>',
+        '<p style="font-size:14px;color:#596570;margin-bottom:20px;">',
+        'Service area: <strong>', escapeHtml(meta.name), '</strong>',
+        '</p>',
+        '<button id="confirmBookingBtn" style="background:#4caf50;color:#fff;border:none;',
+        'padding:12px 28px;font-size:16px;border-radius:4px;cursor:pointer;margin-bottom:12px;">',
+        'Book at this address &rarr;</button><br>',
+        '<a id="changeAddressLink" href="#" style="font-size:13px;color:#596570;">',
+        'Use a different address</a>',
+        '</div>'
+    ].join('');
+
+    form.style.display = 'none';
+    form.parentNode.insertBefore(card, form.nextSibling);
+
+    document.getElementById('confirmBookingBtn').onclick = function() {
+        window.location.href = bookingUrl;
+    };
+    document.getElementById('changeAddressLink').onclick = function(e) {
+        e.preventDefault();
+        card.remove();
+        form.style.display = '';
+        document.getElementById('addressInput').value = '';
+        document.getElementById('addressInput').focus();
+    };
+}
+
+function escapeHtml(str) {
+    return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
 }
 
 // Define the polygons for each region
@@ -491,4 +513,26 @@ var CL2_EastDenver = [
     [-104.921888, 39.777593],
     [-104.930814, 39.77944],
     [-104.940084, 39.779704]
+];
+
+// Zone routing table — order matters (first match wins for overlapping polygons)
+var ZONES = [
+    { polygon: C1_Northfield,            key: "C1_Northfield",            url: "https://sprinkler.as.me/?appointmentType=36809706" },
+    { polygon: C3_CentralDenver,         key: "C3_CentralDenver",         url: "https://sprinkler.as.me/?appointmentType=36807385" },
+    { polygon: CS1_NorthWest,            key: "CS1_NorthWest",            url: "https://sprinkler.as.me/?appointmentType=38136540" },
+    { polygon: CS2_SouthWest,            key: "CS2_SouthWest",            url: "https://sprinkler.as.me/?appointmentType=52547839" },
+    { polygon: CL1_DenverCountryClub,    key: "CL1_DenverCountryClub",    url: "https://sprinkler.as.me/?appointmentType=36955521" },
+    { polygon: CL2_EastDenver,           key: "CL2_EastDenver",           url: "https://sprinkler.as.me/?appointmentType=36824968" },
+    { polygon: CL3_SouthDenverWest,      key: "CL3_SouthDenverWest",      url: "https://sprinkler.as.me/?appointmentType=36807369" },
+    { polygon: CL4_SouthDenverEast,      key: "CL4_SouthDenverEast",      url: "https://sprinkler.as.me/?appointmentType=67267596" },
+    { polygon: S1_Westminster,           key: "S1_Westminster",           url: "https://sprinkler.as.me/?appointmentType=67266960" },
+    { polygon: S2_WheatridgeEdgewater,   key: "S2_WheatridgeEdgewater",   url: "https://sprinkler.as.me/?appointmentType=67267435" },
+    { polygon: S3_Lakewood,              key: "S3_Lakewood",              url: "https://sprinkler.as.me/?appointmentType=67267564" },
+    { polygon: L1_WestAurora,            key: "L1_WestAurora",            url: "https://sprinkler.as.me/?appointmentType=36955445" },
+    { polygon: L2_NorthAurora,           key: "L2_NorthAurora",           url: "https://sprinkler.as.me/?appointmentType=67267848" },
+    { polygon: L3_FarEast,               key: "L3_FarEast",               url: "https://sprinkler.as.me/?appointmentType=67269948" },
+    { polygon: L4_CentralAurora,         key: "L4_CentralAurora",         url: "https://sprinkler.as.me/?appointmentType=67241271" },
+    { polygon: L5_DTCGreenwoodVillage,   key: "L5_DTCGreenwoodVillage",   url: "https://sprinkler.as.me/?appointmentType=36955481" },
+    { polygon: L6_SouthAuroraCentennial, key: "L6_SouthAuroraCentennial", url: "https://sprinkler.as.me/?appointmentType=36955162" },
+    { polygon: L7_SoutheastAurora,       key: "L7_SoutheastAurora",       url: "https://sprinkler.as.me/?appointmentType=67267792" }
 ];
