@@ -6,6 +6,12 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
         console.error('addressForm element not found');
     }
+
+    // Seasonal auto-select: Jan-Aug = startup, Sep-Dec = blowout
+    var month = new Date().getMonth(); // 0-11
+    var defaultService = month >= 8 ? 'blowout' : 'startup';
+    var defaultRadio = document.querySelector('input[value="' + defaultService + '"]');
+    if (defaultRadio) defaultRadio.checked = true;
 });
 
 function onAddressSubmit(event) {
@@ -101,6 +107,7 @@ function getCoordinates(address, callback) {
 
 function showConfirmationCard(formattedAddress, zoneName, acuityUrl) {
     var form = document.getElementById('addressForm');
+    var serviceSelector = document.getElementById('serviceSelector');
     var errorElem = document.getElementById('errorMessage');
     if (errorElem) errorElem.textContent = '';
 
@@ -130,6 +137,7 @@ function showConfirmationCard(formattedAddress, zoneName, acuityUrl) {
         '</div>'
     ].join('');
 
+    if (serviceSelector) serviceSelector.style.display = 'none';
     form.style.display = 'none';
     form.parentNode.insertBefore(card, form.nextSibling);
 
@@ -139,6 +147,7 @@ function showConfirmationCard(formattedAddress, zoneName, acuityUrl) {
     document.getElementById('changeAddressLink').onclick = function(e) {
         e.preventDefault();
         card.remove();
+        if (serviceSelector) serviceSelector.style.display = '';
         form.style.display = '';
         document.getElementById('addressInput').value = '';
         document.getElementById('addressInput').focus();

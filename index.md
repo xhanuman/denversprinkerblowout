@@ -29,8 +29,24 @@ layout: default
     
     <br>
 
+<style>
+  #serviceSelector { text-align: center; margin: 8px auto 4px; }
+  #serviceSelector strong { font-family: 'Lora', 'Helvetica Neue', Arial, sans-serif; }
+  #serviceSelector .radio-group { display: inline-block; text-align: left; }
+  #serviceSelector label { display: block; margin: 3px 0; cursor: pointer; font-size: 14px; }
+  #serviceSelector input[type="radio"] { margin-right: 4px; }
+</style>
 
-<form id="addressForm" style="text-align: center; margin-top: 50px;">
+<div id="serviceSelector">
+  <strong>Select your service:</strong><br>
+  <div class="radio-group">
+    <label><input type="radio" name="serviceType" value="startup"> Spring Start Ups</label>
+    <label><input type="radio" name="serviceType" value="blowout"> Fall Winterization/Blowout</label>
+    <label><input type="radio" name="serviceType" value="lawncare"> Lawn Care</label>
+  </div>
+</div>
+
+<form id="addressForm" style="text-align: center; margin-top: 8px;">
     <label for="address" style="display: block;">Enter your address following this example:</label>
     (2300 Steele St, Denver 80205) w/o brackets and using a COMMA is necessary after the address!<br><br>
     <input type="text" id="addressInput" placeholder="Enter your address" style="text-align: left; width: 400px;">
