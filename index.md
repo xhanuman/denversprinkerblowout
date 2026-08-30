@@ -38,24 +38,47 @@ layout: default
   #serviceSelector input[type="radio"] { margin-right: 4px; }
 </style>
 
+<form id="addressForm" style="text-align: center; margin-top: 8px;" autocomplete="off">
 <div id="serviceSelector">
   <strong>Select your service:</strong><br>
   <div class="radio-group">
-    <label class="disabled"><input type="radio" name="serviceType" value="startup" disabled> Spring Start Ups</label>
-    <label><input type="radio" name="serviceType" value="blowout" checked> Fall Winterization/Blowout</label>
-    <label><input type="radio" name="serviceType" value="lawncare"> Lawn Care</label>
+    <label class="disabled"><input type="radio" name="serviceType" value="startup" disabled autocomplete="off"> Spring Start Ups</label>
+    <label><input type="radio" name="serviceType" value="blowout" checked="checked" autocomplete="off"> Fall Winterization/Blowout</label>
+    <label><input type="radio" name="serviceType" value="lawncare" autocomplete="off"> Lawn Care</label>
   </div>
 </div>
-
-<form id="addressForm" style="text-align: center; margin-top: 8px;">
     <label for="address" style="display: block;">Enter your address following this example:</label>
     (2300 Steele St, Denver 80205) w/o brackets and using a COMMA is necessary after the address!<br><br>
-    <input type="text" id="addressInput" placeholder="Enter your address" style="text-align: left; width: 400px;">
+    <input type="text" id="addressInput" placeholder="Enter your address" style="text-align: left; width: 400px;" autocomplete="off">
     <br><br>
     <button type="submit">Scheduling Link</button>
 </form>
 
     <p id="errorMessage"></p>
-    <script src="mapHandler.js"></script>
+    <script src="mapHandler.js?v=20260830-blowout"></script>
+    <script>
+    (function() {
+      function forceBlowoutDefault() {
+        var startupRadio = document.querySelector('input[name="serviceType"][value="startup"]');
+        var blowoutRadio = document.querySelector('input[name="serviceType"][value="blowout"]');
+        if (startupRadio) {
+          startupRadio.disabled = true;
+          startupRadio.checked = false;
+          startupRadio.defaultChecked = false;
+        }
+        if (blowoutRadio) {
+          blowoutRadio.disabled = false;
+          blowoutRadio.checked = true;
+          blowoutRadio.defaultChecked = true;
+        }
+      }
+      forceBlowoutDefault();
+      document.addEventListener('DOMContentLoaded', forceBlowoutDefault);
+      window.addEventListener('load', forceBlowoutDefault);
+      window.addEventListener('pageshow', forceBlowoutDefault);
+      setTimeout(forceBlowoutDefault, 0);
+      setTimeout(forceBlowoutDefault, 100);
+    })();
+    </script>
 
 </body>

@@ -13,12 +13,16 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Startup closed for now: gray it out and default to blowout.
+    forceBlowoutDefault();
+});
+
+function forceBlowoutDefault() {
     var startupRadio = document.querySelector('input[name="serviceType"][value="startup"]');
     var blowoutRadio = document.querySelector('input[name="serviceType"][value="blowout"]');
     if (startupRadio) {
         startupRadio.disabled = true;
         startupRadio.checked = false;
+        startupRadio.defaultChecked = false;
         var startupLabel = startupRadio.closest ? startupRadio.closest('label') : startupRadio.parentElement;
         if (startupLabel) {
             startupLabel.classList.add('disabled');
@@ -28,9 +32,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     if (blowoutRadio) {
+        blowoutRadio.disabled = false;
         blowoutRadio.checked = true;
+        blowoutRadio.defaultChecked = true;
     }
-});
+}
+window.addEventListener('load', forceBlowoutDefault);
+window.addEventListener('pageshow', forceBlowoutDefault);
 
 function onAddressSubmit(event) {
     if (event) {
