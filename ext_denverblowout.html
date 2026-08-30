@@ -1932,12 +1932,19 @@
                 }
             }
 
-            // Seasonal auto-select: Jan-Aug = startup, Sep-Dec = blowout
-            var month = new Date().getMonth(); // 0-11
-            if (month >= 8) { // Sep-Dec
-                document.querySelector('input[value="blowout"]').checked = true;
-            } else { // Jan-Aug
-                document.querySelector('input[value="startup"]').checked = true;
+            // Startup closed for now: gray it out and default to blowout.
+            var startupRadio = document.querySelector('input[name="serviceType"][value="startup"]');
+            var blowoutRadio = document.querySelector('input[name="serviceType"][value="blowout"]');
+            if (startupRadio) {
+                startupRadio.disabled = true;
+                startupRadio.checked = false;
+                var startupLabel = startupRadio.closest ? startupRadio.closest('label') : startupRadio.parentElement;
+                if (startupLabel) {
+                    startupLabel.classList.add('disabled');
+                }
+            }
+            if (blowoutRadio) {
+                blowoutRadio.checked = true;
             }
         });
 
@@ -2104,8 +2111,8 @@
     <div id="serviceSelector">
         <strong>Select your service:</strong><br>
         <div class="radio-group">
-            <label><input type="radio" name="serviceType" value="startup"> Spring Start Ups</label>
-            <label><input type="radio" name="serviceType" value="blowout"> Fall Winterization/Blowout</label>
+            <label class="disabled"><input type="radio" name="serviceType" value="startup" disabled> Spring Start Ups</label>
+            <label><input type="radio" name="serviceType" value="blowout" checked> Fall Winterization/Blowout</label>
             <label><input type="radio" name="serviceType" value="lawncare"> Lawn Care</label>
         </div>
     </div>

@@ -15,16 +15,16 @@ layout: default
 
 <h3>Depending on your location, connect with:</h3>
 <ul>
-  <li><strong>Shane</strong> (West Denver)</li>
   <li><strong>Leif</strong> (Denver, Aurora, DTC & surrounding areas)</li>
   <li><strong>Conrad</strong> (Northfield, East/Central/West/South Denver)</li>
 </ul>
 
-<p><em>Scheduling for 2025 Denver and surrounding areas for Winterization and Blowout appointments for Denver and surrounding area! (if you've input your address correctly and you aren't presented with a scheduling link your address is likely outside of our service area</em>
+<p><em>Scheduling for 2026 Denver and surrounding areas for Winterization and Blowout appointments for Denver and surrounding area! (if you've input your address correctly and you aren't presented with a scheduling link your address is likely outside of our service area
+</em>
 </p>
 
 <h5>
-        Welcome to Denver’s premier sprinkler blowout and winterization service! As the cold season approaches, it's crucial to protect your irrigation system. Our expert team specializes in sprinkler blowout in Denver, ensuring your system is fully prepared for winter. Trust us for fast, reliable Denver sprinkler blowout and irrigation system winterization to safeguard your investment and avoid costly repairs. Depending on your location, you'll be able to book with Shane (West Denver), Leif Denver, Aurora and DTC/surrounding and/or Conrad in Denver primarily (Northfield, East/Central/West/South) today for peace of mind this Winter!
+        Welcome to Denver’s premier sprinkler blowout and winterization service! As the cold season approaches, it's crucial to protect your irrigation system. Our expert team specializes in sprinkler blowout in Denver, ensuring your system is fully prepared for winter. Trust us for fast, reliable Denver sprinkler blowout and irrigation system winterization to safeguard your investment and avoid costly repairs. Depending on your location, you'll be able to book with Leif (Denver, Aurora, DTC & surrounding) and/or Conrad in Denver primarily (Northfield, East/Central/West/South) today for peace of mind this Winter!
 </h5>
     
     <br>
@@ -34,14 +34,15 @@ layout: default
   #serviceSelector strong { font-family: 'Lora', 'Helvetica Neue', Arial, sans-serif; }
   #serviceSelector .radio-group { display: inline-block; text-align: left; }
   #serviceSelector label { display: block; margin: 3px 0; cursor: pointer; font-size: 14px; }
+  #serviceSelector label.disabled { color: #888; opacity: 0.45; cursor: not-allowed; }
   #serviceSelector input[type="radio"] { margin-right: 4px; }
 </style>
 
 <div id="serviceSelector">
   <strong>Select your service:</strong><br>
   <div class="radio-group">
-    <label><input type="radio" name="serviceType" value="startup"> Spring Start Ups</label>
-    <label><input type="radio" name="serviceType" value="blowout"> Fall Winterization/Blowout</label>
+    <label class="disabled"><input type="radio" name="serviceType" value="startup" disabled> Spring Start Ups</label>
+    <label><input type="radio" name="serviceType" value="blowout" checked> Fall Winterization/Blowout</label>
     <label><input type="radio" name="serviceType" value="lawncare"> Lawn Care</label>
   </div>
 </div>

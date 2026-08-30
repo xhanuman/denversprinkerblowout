@@ -13,12 +13,22 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Seasonal auto-select: Jan-Aug = startup, Sep-Dec = blowout
-    var month = new Date().getMonth(); // 0-11
-    if (month >= 8) {
-        document.querySelector('input[value="blowout"]').checked = true;
-    } else {
-        document.querySelector('input[value="startup"]').checked = true;
+    // Startup closed for now: gray it out and default to blowout.
+    var startupRadio = document.querySelector('input[name="serviceType"][value="startup"]');
+    var blowoutRadio = document.querySelector('input[name="serviceType"][value="blowout"]');
+    if (startupRadio) {
+        startupRadio.disabled = true;
+        startupRadio.checked = false;
+        var startupLabel = startupRadio.closest ? startupRadio.closest('label') : startupRadio.parentElement;
+        if (startupLabel) {
+            startupLabel.classList.add('disabled');
+            startupLabel.style.opacity = '0.45';
+            startupLabel.style.cursor = 'not-allowed';
+            startupLabel.style.color = '#888';
+        }
+    }
+    if (blowoutRadio) {
+        blowoutRadio.checked = true;
     }
 });
 
