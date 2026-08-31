@@ -1939,7 +1939,30 @@
                     addressInput.value = savedAddress;
                 }
             }
+
+            forceBlowoutDefault();
         });
+
+        function forceBlowoutDefault() {
+            var startupRadio = document.querySelector('input[name="serviceType"][value="startup"]');
+            var blowoutRadio = document.querySelector('input[name="serviceType"][value="blowout"]');
+            if (startupRadio) {
+                startupRadio.disabled = true;
+                startupRadio.checked = false;
+                startupRadio.defaultChecked = false;
+                var startupLabel = startupRadio.closest ? startupRadio.closest('label') : startupRadio.parentElement;
+                if (startupLabel) {
+                    startupLabel.classList.add('disabled');
+                }
+            }
+            if (blowoutRadio) {
+                blowoutRadio.disabled = false;
+                blowoutRadio.checked = true;
+                blowoutRadio.defaultChecked = true;
+            }
+        }
+        window.addEventListener('load', forceBlowoutDefault);
+        window.addEventListener('pageshow', forceBlowoutDefault);
 
         // =====================================================
         // FORM SUBMISSION
@@ -2105,7 +2128,7 @@
         <p id="schedulingNote">Winterization/Blowout scheduling should be available by this Friday, 4th of September.</p>
         <strong>Select your service:</strong><br>
         <div class="radio-group">
-            <label><input type="radio" name="serviceType" value="startup" autocomplete="off"> Spring Start Ups</label>
+            <label class="disabled"><input type="radio" name="serviceType" value="startup" disabled autocomplete="off"> Spring Start Ups</label>
             <label><input type="radio" name="serviceType" value="blowout" checked="checked" autocomplete="off"> Fall Winterization/Blowout</label>
             <label><input type="radio" name="serviceType" value="lawncare" autocomplete="off"> Lawn Care</label>
         </div>

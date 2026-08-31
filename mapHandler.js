@@ -12,7 +12,33 @@ document.addEventListener('DOMContentLoaded', function() {
             addressInput.value = savedAddress;
         }
     }
+
+    forceBlowoutDefault();
 });
+
+function forceBlowoutDefault() {
+    var startupRadio = document.querySelector('input[name="serviceType"][value="startup"]');
+    var blowoutRadio = document.querySelector('input[name="serviceType"][value="blowout"]');
+    if (startupRadio) {
+        startupRadio.disabled = true;
+        startupRadio.checked = false;
+        startupRadio.defaultChecked = false;
+        var startupLabel = startupRadio.closest ? startupRadio.closest('label') : startupRadio.parentElement;
+        if (startupLabel) {
+            startupLabel.classList.add('disabled');
+            startupLabel.style.opacity = '0.45';
+            startupLabel.style.cursor = 'not-allowed';
+            startupLabel.style.color = '#888';
+        }
+    }
+    if (blowoutRadio) {
+        blowoutRadio.disabled = false;
+        blowoutRadio.checked = true;
+        blowoutRadio.defaultChecked = true;
+    }
+}
+window.addEventListener('load', forceBlowoutDefault);
+window.addEventListener('pageshow', forceBlowoutDefault);
 
 function onAddressSubmit(event) {
     if (event) {

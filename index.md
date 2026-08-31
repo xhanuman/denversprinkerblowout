@@ -44,7 +44,7 @@ layout: default
   <p id="schedulingNote">Winterization/Blowout scheduling should be available by this Friday, 4th of September.</p>
   <strong>Select your service:</strong><br>
   <div class="radio-group">
-    <label><input type="radio" name="serviceType" value="startup" autocomplete="off"> Spring Start Ups</label>
+    <label class="disabled"><input type="radio" name="serviceType" value="startup" disabled autocomplete="off"> Spring Start Ups</label>
     <label><input type="radio" name="serviceType" value="blowout" checked="checked" autocomplete="off"> Fall Winterization/Blowout</label>
     <label><input type="radio" name="serviceType" value="lawncare" autocomplete="off"> Lawn Care</label>
   </div>
@@ -57,6 +57,28 @@ layout: default
 </form>
 
     <p id="errorMessage"></p>
-    <script src="mapHandler.js?v=20260831-startup"></script>
+    <script src="mapHandler.js?v=20260831-gray"></script>
+    <script>
+    (function() {
+      function forceBlowoutDefault() {
+        var startupRadio = document.querySelector('input[name="serviceType"][value="startup"]');
+        var blowoutRadio = document.querySelector('input[name="serviceType"][value="blowout"]');
+        if (startupRadio) {
+          startupRadio.disabled = true;
+          startupRadio.checked = false;
+          startupRadio.defaultChecked = false;
+        }
+        if (blowoutRadio) {
+          blowoutRadio.disabled = false;
+          blowoutRadio.checked = true;
+          blowoutRadio.defaultChecked = true;
+        }
+      }
+      forceBlowoutDefault();
+      document.addEventListener('DOMContentLoaded', forceBlowoutDefault);
+      window.addEventListener('load', forceBlowoutDefault);
+      window.addEventListener('pageshow', forceBlowoutDefault);
+    })();
+    </script>
 
 </body>
