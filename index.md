@@ -36,10 +36,12 @@ layout: default
   #serviceSelector label { display: block; margin: 3px 0; cursor: pointer; font-size: 14px; }
   #serviceSelector label.disabled { color: #888; opacity: 0.45; cursor: not-allowed; }
   #serviceSelector input[type="radio"] { margin-right: 4px; }
+  #schedulingNote { text-align: center; margin: 0 auto 10px; font-size: 15px; font-weight: 600; color: #1a1a1a; }
 </style>
 
 <form id="addressForm" style="text-align: center; margin-top: 8px;" autocomplete="off">
 <div id="serviceSelector">
+  <p id="schedulingNote">Winterization/Blowout scheduling should be available by this Friday, 4th of September.</p>
   <strong>Select your service:</strong><br>
   <div class="radio-group">
     <label class="disabled"><input type="radio" name="serviceType" value="startup" disabled autocomplete="off"> Spring Start Ups</label>
