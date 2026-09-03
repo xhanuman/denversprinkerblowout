@@ -41,7 +41,7 @@ layout: default
 
 <form id="addressForm" style="text-align: center; margin-top: 8px;" autocomplete="off">
 <div id="serviceSelector">
-  <p id="schedulingNote">Winterization/Blowout scheduling should be available by this Friday, 4th of September.</p>
+  <p id="schedulingNote">Now scheduling appointments for the 2026 Fall winterization and blowouts. Last day to water outdoors is 30 September per Denver Water due to drought conditions.</p>
   <strong>Select your service:</strong><br>
   <div class="radio-group">
     <label class="disabled"><input type="radio" name="serviceType" value="startup" disabled autocomplete="off"> Spring Start Ups</label>
