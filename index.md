@@ -37,6 +37,30 @@ layout: default
   #serviceSelector label.disabled { color: #888; opacity: 0.45; cursor: not-allowed; }
   #serviceSelector input[type="radio"] { margin-right: 4px; }
   #schedulingNote { text-align: center; margin: 0 auto 10px; font-size: 15px; font-weight: 600; color: #1a1a1a; }
+  #addressForm button[type="submit"] {
+    background: #4caf50;
+    color: #fff;
+    border: 2px solid #4caf50;
+    outline: 2px solid #4caf50;
+    outline-offset: 2px;
+    border-radius: 4px;
+    padding: 14px 28px;
+    font-size: 17px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 12px;
+    min-height: 48px;
+    width: min(100%, 320px);
+    -webkit-appearance: none;
+  }
+  #addressForm #addressInput {
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+    font-size: 16px;
+    padding: 10px 12px;
+  }
+  #serviceSelector, #addressForm { background: transparent; box-shadow: none; }
 </style>
 
 <form id="addressForm" style="text-align: center; margin-top: 8px;" autocomplete="off">
@@ -51,7 +75,7 @@ layout: default
 </div>
     <label for="address" style="display: block;">Enter your address following this example:</label>
     (2300 Steele St, Denver 80205) w/o brackets and using a COMMA is necessary after the address!<br><br>
-    <input type="text" id="addressInput" placeholder="Enter your address" style="text-align: left; width: 400px;" autocomplete="off">
+    <input type="text" id="addressInput" placeholder="Enter your address" style="text-align: left;" autocomplete="off">
     <br><br>
     <button type="submit">Scheduling Link</button>
 </form>

@@ -44,6 +44,36 @@
             color: #1a1a1a;
             font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
         }
+
+        #addressForm button[type="submit"] {
+            background: #4caf50;
+            color: #fff;
+            border: 2px solid #4caf50;
+            outline: 2px solid #4caf50;
+            outline-offset: 2px;
+            border-radius: 4px;
+            padding: 14px 28px;
+            font-size: 17px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 12px;
+            min-height: 48px;
+            width: min(100%, 320px);
+            -webkit-appearance: none;
+        }
+        #addressForm #addressInput {
+            width: 100%;
+            max-width: 400px;
+            box-sizing: border-box;
+            font-size: 16px;
+            padding: 10px 12px;
+        }
+
+        #serviceSelector,
+        #addressForm {
+            background: transparent;
+            box-shadow: none;
+        }
     </style>
     <script>
         // =====================================================
@@ -1941,7 +1971,35 @@
             }
 
             forceBlowoutDefault();
+            notifyParentHeight();
+            setTimeout(notifyParentHeight, 100);
+            setTimeout(notifyParentHeight, 500);
         });
+
+
+        function notifyParentHeight() {
+            try {
+                var form = document.getElementById('addressForm');
+                var selector = document.getElementById('serviceSelector');
+                var card = document.getElementById('confirmationCard');
+                var bottom = 0;
+                [selector, form, card].forEach(function(el) {
+                    if (!el || el.style.display === 'none') return;
+                    var r = el.getBoundingClientRect();
+                    bottom = Math.max(bottom, r.bottom);
+                });
+                // First-step booking UI is short; confirmation can be taller.
+                var h = Math.ceil(bottom + (window.scrollY || 0) + 24);
+                if (!card || card.style.display === 'none') {
+                    h = Math.min(Math.max(h, 420), 560);
+                } else {
+                    h = Math.min(Math.max(h, 480), 900);
+                }
+                if (window.parent && window.parent !== window) {
+                    window.parent.postMessage({ type: 'resize', height: h }, '*');
+                }
+            } catch (e) {}
+        }
 
         function forceBlowoutDefault() {
             var startupRadio = document.querySelector('input[name="serviceType"][value="startup"]');
@@ -1961,8 +2019,9 @@
                 blowoutRadio.defaultChecked = true;
             }
         }
-        window.addEventListener('load', forceBlowoutDefault);
-        window.addEventListener('pageshow', forceBlowoutDefault);
+        window.addEventListener('load', function() { forceBlowoutDefault(); notifyParentHeight(); });
+        window.addEventListener('pageshow', function() { forceBlowoutDefault(); notifyParentHeight(); });
+        window.addEventListener('resize', notifyParentHeight);
 
         // =====================================================
         // FORM SUBMISSION
@@ -2098,6 +2157,8 @@
             ].join('');
 
             if (serviceSelector) serviceSelector.style.display = 'none';
+            notifyParentHeight();
+            setTimeout(notifyParentHeight, 100);
             form.style.display = 'none';
             form.parentNode.insertBefore(card, form.nextSibling);
 
@@ -2137,9 +2198,9 @@
     <form id="addressForm" style="text-align: center; margin-top: 8px; font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;" autocomplete="off">
         <label for="addressInput" style="display: block; margin-bottom: 2px;">Enter your address following this example:</label>
         <small>(2300 Steele St, Denver 80205) w/o brackets and using a COMMA is necessary after the address!</small><br>
-        <input type="text" id="addressInput" placeholder="Enter your address" style="text-align: left; width: 400px; margin-top: 6px;">
+        <input type="text" id="addressInput" placeholder="Enter your address" style="text-align: left; margin-top: 6px;" autocomplete="off">
         <br>
-        <button type="submit" style="margin-top: 6px;">Scheduling Link</button>
+        <button type="submit">Scheduling Link</button>
     </form>
     <p id="errorMessage" style="color: red; text-align: center;"></p>
 </body>
