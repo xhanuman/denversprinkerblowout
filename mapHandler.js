@@ -114,16 +114,47 @@ function isPointInPolygon(point, polygon) {
 
 function getCoordinates(address, callback) {
     var apiKey = 'AIzaSyAVGo30Lp8CbkvGMSfDafAnlpvMpyBj4Lc';
-    var url = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + encodeURIComponent(address) + '&key=' + apiKey;
+    var url = 'https://maps.googleapis.com/maps/api/geocode/json?address=' +
+        encodeURIComponent(address) +
+        '&components=' + encodeURIComponent('country:US|administrative_area:CO') +
+        '&key=' + apiKey;
+    var rejectMsg = "Couldn't find that street. Add St or Ave and the ZIP, with a comma after the street.";
+
+    function hasType(components, type) {
+        if (!components) return false;
+        for (var i = 0; i < components.length; i++) {
+            var types = components[i].types || [];
+            for (var j = 0; j < types.length; j++) {
+                if (types[j] === type) return true;
+            }
+        }
+        return false;
+    }
+
+    function isStreetLevel(result) {
+        if (!result) return false;
+        if (result.partial_match) return false;
+        var locType = result.geometry && result.geometry.location_type;
+        if (locType === 'APPROXIMATE') return false;
+        return hasType(result.address_components, 'street_number') &&
+            hasType(result.address_components, 'route');
+    }
 
     fetch(url)
         .then(function(response) { return response.json(); })
         .then(function(data) {
-            if (data.results.length > 0) {
-                var result = data.results[0];
-                callback(result.geometry.location, result.formatted_address, null);
+            var results = (data && data.results) || [];
+            var picked = null;
+            for (var i = 0; i < results.length; i++) {
+                if (isStreetLevel(results[i])) {
+                    picked = results[i];
+                    break;
+                }
+            }
+            if (picked) {
+                callback(picked.geometry.location, picked.formatted_address, null);
             } else {
-                callback(null, null, 'No results found');
+                callback(null, null, rejectMsg);
             }
         })
         .catch(function(error) { callback(null, null, error.message); });
