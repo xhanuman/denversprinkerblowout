@@ -19,7 +19,7 @@ layout: default
   <li><strong>Conrad</strong> (Northfield, East/Central/West/South Denver)</li>
 </ul>
 
-<p><em>Scheduling for 2026 Denver and surrounding areas for Winterization and Blowout appointments for Denver and surrounding area! (if you've input your address correctly and you aren't presented with a scheduling link your address is likely outside of our service area
+<p class="svc-disclaimer" style="display:block;width:100%;max-width:36rem;margin:10px auto;text-align:center;"><em>Scheduling for 2026 Denver and surrounding areas for Winterization and Blowout appointments for Denver and surrounding area! (if you've input your address correctly and you aren't presented with a scheduling link your address is likely outside of our service area
 </em>
 </p>
 
@@ -80,8 +80,8 @@ layout: default
     <button type="submit">Scheduling Link</button>
 </form>
 
-    <p id="errorMessage"></p>
-    <script src="mapHandler.js?v=20260913-geocode2"></script>
+    <p id="errorMessage" style="color:#c62828;text-align:center;display:block;width:100%;margin:10px auto 0;"></p>
+    <script src="mapHandler.js?v=20260913-ux"></script>
     <script>
     (function() {
       function forceBlowoutDefault() {

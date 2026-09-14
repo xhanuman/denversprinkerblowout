@@ -40,9 +40,27 @@ function forceBlowoutDefault() {
 window.addEventListener('load', forceBlowoutDefault);
 window.addEventListener('pageshow', forceBlowoutDefault);
 
+function showAddressError(message, focusInput) {
+    var errorMessageElem = document.getElementById('errorMessage');
+    if (errorMessageElem) {
+        errorMessageElem.textContent = message;
+    }
+    if (focusInput) {
+        var addressInput = document.getElementById('addressInput');
+        if (addressInput) {
+            addressInput.focus();
+        }
+    }
+}
+
 function onAddressSubmit(event) {
     if (event) {
         event.preventDefault();
+    }
+
+    var errorMessageElem = document.getElementById('errorMessage');
+    if (errorMessageElem) {
+        errorMessageElem.textContent = '';
     }
 
     var addressInput = document.getElementById('addressInput');
@@ -53,30 +71,26 @@ function onAddressSubmit(event) {
     var address = addressInput.value.trim();
 
     if (!isValidAddress(address)) {
-        alert('Please enter a complete address, including street, city, and state.');
+        showAddressError("Add St or Ave and the ZIP — example: 2300 Steele St, Denver 80205", true);
         return;
     }
 
-    // Get selected service type
     var selectedService = document.querySelector('input[name="serviceType"]:checked');
     if (!selectedService) {
-        alert('Please select a service type.');
+        showAddressError("Please select a service type.", false);
         return;
     }
     var serviceType = selectedService.value;
     var zones = serviceZones[serviceType];
 
     if (!zones || zones.length === 0) {
-        alert('This service is not yet available for scheduling. Please check back later.');
+        showAddressError("This service is not yet available for scheduling. Please check back later.", false);
         return;
     }
 
     getCoordinates(address, function(location, formattedAddress, error) {
         if (error) {
-            var errorMessageElem = document.getElementById('errorMessage');
-            if (errorMessageElem) {
-                errorMessageElem.textContent = error;
-            }
+            showAddressError(error, true);
             return;
         }
 
@@ -88,7 +102,7 @@ function onAddressSubmit(event) {
             }
         }
 
-        alert('Address is either incomplete or out of our service area. Please review the syntax of your entry - ensure there is a comma after the address and enter the city at a minimum.');
+        showAddressError("This address is outside our service area.", true);
     });
 }
 
@@ -118,7 +132,7 @@ function getCoordinates(address, callback) {
         encodeURIComponent(address) +
         '&components=' + encodeURIComponent('country:US|administrative_area:CO') +
         '&key=' + apiKey;
-    var rejectMsg = "Couldn't find that street. Add St or Ave and the ZIP, with a comma after the street.";
+    var rejectMsg = "Couldn't find that street. Add St or Ave and the ZIP — example: 2300 Steele St, Denver 80205";
 
     function hasStreetDesignatorOrZip(raw) {
         if (!raw) return false;
