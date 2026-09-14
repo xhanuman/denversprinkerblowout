@@ -2115,6 +2115,17 @@
                 '&key=' + apiKey;
             var rejectMsg = "Couldn't find that street. Add St or Ave and the ZIP, with a comma after the street.";
 
+            function hasStreetDesignatorOrZip(raw) {
+                if (!raw) return false;
+                if (/\b\d{5}\b/.test(raw)) return true;
+                return /\b(St|Street|Ave|Avenue|Blvd|Boulevard|Dr|Drive|Rd|Road|Ct|Court|Ln|Lane|Way|Pl|Place|Cir|Circle|Pkwy|Parkway|Hwy|Ter|Terrace)\b/i.test(raw);
+            }
+
+            if (!hasStreetDesignatorOrZip(address)) {
+                callback(null, null, rejectMsg);
+                return;
+            }
+
             function hasType(components, type) {
                 if (!components) return false;
                 for (var i = 0; i < components.length; i++) {
