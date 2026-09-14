@@ -73,15 +73,16 @@ layout: default
     <label><input type="radio" name="serviceType" value="lawncare" autocomplete="off"> Lawn Care</label>
   </div>
 </div>
-    <label for="address" style="display: block;">Enter your address following this example:</label>
-    (2300 Steele St, Denver 80205) Include St or Ave and the ZIP when you can. A comma after the street is required.<br><br>
+    <label for="address" style="display: block;">Enter your address like this example:</label>
+    <p style="margin:0 0 4px;font-size:16px;font-weight:700;">2300 Steele St, Denver 80205</p>
+    <p style="margin:0 0 8px;font-size:13px;">Put a <strong>comma after the street</strong>, then city and ZIP.</p>
     <input type="text" id="addressInput" placeholder="Enter your address" style="text-align: left;" autocomplete="off">
     <br><br>
     <button type="submit">Scheduling Link</button>
 </form>
 
-    <p id="errorMessage" style="color:#c62828;text-align:center;display:block;width:100%;margin:10px auto 0;"></p>
-    <script src="mapHandler.js?v=20260913-ux"></script>
+    <p id="errorMessage" style="color:#c62828;text-align:center;display:block;width:100%;max-width:100%;margin:10px auto 0;padding:0 16px;box-sizing:border-box;white-space:normal;overflow-wrap:break-word;"></p>
+    <script src="mapHandler.js?v=20260913-nudge"></script>
     <script>
     (function() {
       function forceBlowoutDefault() {

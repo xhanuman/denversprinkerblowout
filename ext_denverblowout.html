@@ -77,12 +77,28 @@
         #errorMessage {
             display: block;
             width: 100%;
-            max-width: 480px;
+            max-width: 100%;
             margin: 10px auto 0;
+            padding: 0 16px;
+            box-sizing: border-box;
             text-align: center;
             color: #c62828;
             font-size: 14px;
-            line-height: 1.4;
+            line-height: 1.45;
+            white-space: normal;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+        }
+        .addr-example {
+            margin: 0 0 4px;
+            font-size: 16px;
+            font-weight: 700;
+            color: #2a2d33;
+        }
+        .addr-hint {
+            margin: 0 0 8px;
+            font-size: 13px;
+            color: #333;
         }
     </style>
     <script>
@@ -1992,16 +2008,18 @@
                 var form = document.getElementById('addressForm');
                 var selector = document.getElementById('serviceSelector');
                 var card = document.getElementById('confirmationCard');
+                var err = document.getElementById('errorMessage');
                 var bottom = 0;
-                [selector, form, card].forEach(function(el) {
+                [selector, form, card, err].forEach(function(el) {
                     if (!el || el.style.display === 'none') return;
                     var r = el.getBoundingClientRect();
                     bottom = Math.max(bottom, r.bottom);
                 });
                 // First-step booking UI is short; confirmation can be taller.
-                var h = Math.ceil(bottom + (window.scrollY || 0) + 24);
+                var extra = (err && err.textContent) ? 36 : 24;
+                var h = Math.ceil(bottom + (window.scrollY || 0) + extra);
                 if (!card || card.style.display === 'none') {
-                    h = Math.min(Math.max(h, 420), 560);
+                    h = Math.min(Math.max(h, 460), 720);
                 } else {
                     h = Math.min(Math.max(h, 480), 900);
                 }
@@ -2036,6 +2054,35 @@
         // =====================================================
         // FORM SUBMISSION
         // =====================================================
+        var STREET_DESIGNATOR_RE = /\b(St|Street|Ave|Avenue|Blvd|Boulevard|Dr|Drive|Rd|Road|Ct|Court|Ln|Lane|Way|Pl|Place|Cir|Circle|Pkwy|Parkway|Hwy|Ter|Terrace)\b/i;
+        var ZIP_RE = /\b\d{5}\b/;
+
+        function hasStreetDesignator(raw) {
+            return STREET_DESIGNATOR_RE.test(raw || '');
+        }
+
+        function hasZip(raw) {
+            return ZIP_RE.test(raw || '');
+        }
+
+        function missingAddressHint(address) {
+            if (!address || !/,/.test(address)) {
+                return 'Add a comma after the street — example: 2300 Steele St, Denver 80205';
+            }
+            var des = hasStreetDesignator(address);
+            var zip = hasZip(address);
+            if (!des && !zip) {
+                return 'Add St or Ave and the ZIP — example: 2300 Steele St, Denver 80205';
+            }
+            if (!des) {
+                return 'Add St or Ave after the street name — example: 2300 Steele St, Denver 80205';
+            }
+            if (!zip) {
+                return 'Add the ZIP — example: 2300 Steele St, Denver 80205';
+            }
+            return null;
+        }
+
         function showAddressError(message, focusInput) {
             var errorMessageElem = document.getElementById('errorMessage');
             if (errorMessageElem) {
@@ -2049,6 +2096,8 @@
             }
             if (typeof notifyParentHeight === 'function') {
                 notifyParentHeight();
+                setTimeout(notifyParentHeight, 50);
+                setTimeout(notifyParentHeight, 250);
             }
         }
 
@@ -2074,8 +2123,13 @@
 
             var address = addressInput.value.trim();
 
+            var hint = missingAddressHint(address);
+            if (hint) {
+                showAddressError(hint, true);
+                return;
+            }
             if (!isValidAddress(address)) {
-                showAddressError("Add St or Ave and the ZIP — example: 2300 Steele St, Denver 80205", true);
+                showAddressError("Add a comma after the street — example: 2300 Steele St, Denver 80205", true);
                 return;
             }
 
@@ -2150,7 +2204,7 @@
             }
 
             if (!hasStreetDesignatorOrZip(address)) {
-                callback(null, null, rejectMsg);
+                callback(null, null, missingAddressHint(address) || rejectMsg);
                 return;
             }
 
@@ -2266,12 +2320,13 @@
     </div>
 
     <form id="addressForm" style="text-align: center; margin-top: 8px; font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;" autocomplete="off">
-        <label for="addressInput" style="display: block; margin-bottom: 2px;">Enter your address following this example:</label>
-        <small>(2300 Steele St, Denver 80205) Include St or Ave and the ZIP when you can. A comma after the street is required.</small><br>
+        <label for="addressInput" style="display: block; margin-bottom: 4px;">Enter your address like this example:</label>
+        <p class="addr-example">2300 Steele St, Denver 80205</p>
+        <p class="addr-hint">Put a <strong>comma after the street</strong>, then city and ZIP.</p>
         <input type="text" id="addressInput" placeholder="Enter your address" style="text-align: left; margin-top: 6px;" autocomplete="off">
         <br>
         <button type="submit">Scheduling Link</button>
     </form>
-    <p id="errorMessage" style="color:#c62828;text-align:center;display:block;width:100%;margin:10px auto 0;"></p>
+    <p id="errorMessage" style="color:#c62828;text-align:center;display:block;width:100%;max-width:100%;margin:10px auto 0;padding:0 16px;box-sizing:border-box;white-space:normal;overflow-wrap:break-word;"></p>
 </body>
 </html>

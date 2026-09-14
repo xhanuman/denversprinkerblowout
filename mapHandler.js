@@ -40,6 +40,34 @@ function forceBlowoutDefault() {
 window.addEventListener('load', forceBlowoutDefault);
 window.addEventListener('pageshow', forceBlowoutDefault);
 
+var STREET_DESIGNATOR_RE = /\b(St|Street|Ave|Avenue|Blvd|Boulevard|Dr|Drive|Rd|Road|Ct|Court|Ln|Lane|Way|Pl|Place|Cir|Circle|Pkwy|Parkway|Hwy|Ter|Terrace)\b/i;
+var ZIP_RE = /\b\d{5}\b/;
+
+function hasStreetDesignator(raw) {
+    return STREET_DESIGNATOR_RE.test(raw || '');
+}
+
+function hasZip(raw) {
+    return ZIP_RE.test(raw || '');
+}
+
+function missingAddressHint(address) {
+    if (!address || !/,/.test(address)) {
+        return 'Add a comma after the street — example: 2300 Steele St, Denver 80205';
+    }
+    var des = hasStreetDesignator(address);
+    var zip = hasZip(address);
+    if (!des && !zip) {
+        return 'Add St or Ave and the ZIP — example: 2300 Steele St, Denver 80205';
+    }
+    if (!des) {
+        return 'Add St or Ave after the street name — example: 2300 Steele St, Denver 80205';
+    }
+    if (!zip) {
+        return 'Add the ZIP — example: 2300 Steele St, Denver 80205';
+    }
+    return null;
+}
 function showAddressError(message, focusInput) {
     var errorMessageElem = document.getElementById('errorMessage');
     if (errorMessageElem) {
@@ -70,8 +98,13 @@ function onAddressSubmit(event) {
 
     var address = addressInput.value.trim();
 
+    var hint = missingAddressHint(address);
+    if (hint) {
+        showAddressError(hint, true);
+        return;
+    }
     if (!isValidAddress(address)) {
-        showAddressError("Add St or Ave and the ZIP — example: 2300 Steele St, Denver 80205", true);
+        showAddressError("Add a comma after the street — example: 2300 Steele St, Denver 80205", true);
         return;
     }
 
@@ -141,7 +174,7 @@ function getCoordinates(address, callback) {
     }
 
     if (!hasStreetDesignatorOrZip(address)) {
-        callback(null, null, rejectMsg);
+        callback(null, null, missingAddressHint(address) || rejectMsg);
         return;
     }
 
